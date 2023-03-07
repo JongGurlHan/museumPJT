@@ -20,7 +20,16 @@ public class MusiumApiController {
     @GetMapping("/api/display/leeum")
     public ResponseEntity<?> displayLeeum(){
 
-        List<ExhibitionDTO> exList = museumApiService.getExibitionList();
+        List<ExhibitionDTO> exList = museumApiService.getExibitionListLeeum();
+
+        return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/api/display/mmcaSeoul")
+    public ResponseEntity<?> displayMmcaSeoul(){
+
+        List<ExhibitionDTO> exList = museumApiService.getExibitionListMmcaSeoul();
 
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
 
