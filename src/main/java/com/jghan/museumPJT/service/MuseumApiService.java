@@ -10,5 +10,5 @@ public interface MuseumApiService {
     public List<ExhibitionDTO> getExibitionListLeeum();
 
     //MMCA서울
-    List<ExhibitionDTO> getExibitionListMmcaSeoul();
+    List<ExhibitionDTO> getExibitionListNationalMuseum();
 }

@@ -26,10 +26,10 @@ public class MusiumApiController {
 
     }
 
-    @GetMapping("/api/display/mmcaSeoul")
-    public ResponseEntity<?> displayMmcaSeoul(){
+    @GetMapping("/api/display/nationalMuseum")
+    public ResponseEntity<?> displayNationalMuseum(){
 
-        List<ExhibitionDTO> exList = museumApiService.getExibitionListMmcaSeoul();
+        List<ExhibitionDTO> exList = museumApiService.getExibitionListNationalMuseum();
 
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
 
