@@ -24,23 +24,12 @@ public class MuseumApiServiceImpl implements MuseumApiService {
         String URL = "https://www.leeum.org/exhibition/exhibition01.asp";
         Document doc;
         List<ExhibitionDTO> exList = new ArrayList<>();
-
         try{
-           /* if(URL.indexOf("https://") >= 0){
-                MuseumApiServiceImpl.setSSL();
-            }*/
-
-
-
             doc = Jsoup.connect(URL).get();
             Elements eList = doc.getElementsByAttributeValue("class", "exhibitNL").select("li");
             System.out.println(eList);
             for (int i = 0; i<eList.size(); i++){
-
-               // System.out.println(eList.get(i));
                 ExhibitionDTO ex = new ExhibitionDTO();
-
-               // System.out.println("ex:"+ex);
 
                 String eName = eList.get(i).select("span.exName").text();
                 String eLink = "https://www.leeum.org/exhibition/"+eList.get(i).select("a").attr("href");
@@ -55,23 +44,16 @@ public class MuseumApiServiceImpl implements MuseumApiService {
                 ex.setEImg(eImg);
                 ex.setEStart(eStart);
                 ex.setEEnd(eEnd);
-                //System.out.println(ex);
                 exList.add(ex);
-
-
             }
-            System.out.println("exList:"+exList);
-
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return exList;
     }
-//https://colabear754.tistory.com/87
+
     @Override
     public List<ExhibitionDTO> getExibitionListNationalMuseum() {
-        System.out.println("test");
         String URL = "https://www.museum.go.kr/site/main/exhiSpecialTheme/list/current";
         Document doc;
         List<ExhibitionDTO> exList = new ArrayList<>();
@@ -79,51 +61,33 @@ public class MuseumApiServiceImpl implements MuseumApiService {
         try{
             doc = Jsoup.connect(URL).get();
             Elements eList = doc.getElementsByAttributeValue("class", "info");
-           // System.out.println(eList);
+            Elements eListImg = doc.select("div.card.report");
+
 
             for (int i = 0; i<eList.size(); i++){
-
-               // System.out.println(eList.get(i));
                 ExhibitionDTO ex = new ExhibitionDTO();
-
-                // System.out.println("ex:"+ex);
 
                 String eName = eList.get(i).select("a").select("strong").text();
                 String eLink = "https://www.museum.go.kr"+eList.get(i).select("a").attr("href");
                 String eStart = StringUtils.substringBefore(
-                            eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
+                                eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
                 String eEnd = StringUtils.substringAfter(
-                        eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
-
-
-
-                //String eImg  = eList.get(i).select("a").select("img").attr("src");
-
-                System.out.println("ename:" + eName);
-                System.out.println("eLink:" + eLink);
-                System.out.println("eStart:" + eStart);
-                System.out.println("eEnd:" + eEnd);
+                                eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
+                String eImg= "https://www.museum.go.kr"+eListImg.get(i).select("img").last().attr("src");
 
                 ex.setEMuseum("국립중앙박물관");
-//
-//                ex.setEMuseum("leeum");
-//                ex.setEName(eName);
-//                ex.setELink(eLink);
-//                ex.setEImg(eImg);
-//                ex.setEStart(eStart);
-//                ex.setEEnd(eEnd);
-//                //System.out.println(ex);
-//                exList.add(ex);
-
-
+                ex.setEName(eName);
+                ex.setELink(eLink);
+                ex.setELink(eLink);
+                ex.setEStart(eStart);
+                ex.setEEnd(eEnd);
+                ex.setEImg(eImg);
+                exList.add(ex);
             }
-            System.out.println("exList:"+exList);
-
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return exList;
     }
 
 
