@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jghan.museumPJT.mapper.ExhibitionMapper">
+
+    <select id="selectExhibition" parameterType="String" resultType="String">
+        SELECT
+            e_name
+        FROM
+            e_exhibition
+        WHERE
+            e_name = #{eName}
+    </select>
+
+    <insert id="insertExhibition" parameterType="com.jghan.museumPJT.dto.ExhibitionDTO"  >
+        INSERT INTO e_exhibition(
+        e_museum,
+        e_name,
+        e_link,
+        e_img,
+        e_start,
+        e_end)
+            VALUES (
+
+
+           #{eMuseum},
+            #{eName},
+            #{eLink},
+            #{eImg},
+            #{eStart},
+            #{eEnd}
+        )
+    </insert>
+
+
+
+</mapper>

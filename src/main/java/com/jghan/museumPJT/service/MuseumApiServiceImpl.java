@@ -21,8 +21,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MuseumApiServiceImpl implements MuseumApiService {
 
-    //private final ExhibitionService exhibitionService;
+    private final ExhibitionService exhibitionService;
 
+    //====리움미술관====
     @Override
     public List<ExhibitionDTO> getExibitionListLeeum() {
         String URL = "https://www.leeum.org/exhibition/exhibition01.asp";
@@ -47,12 +48,14 @@ public class MuseumApiServiceImpl implements MuseumApiService {
                 ex.setEImg(eImg);
                 ex.setEStart(eStart);
                 ex.setEEnd(eEnd);
+                System.out.println("ex = " + ex);
                 exList.add(ex);
 
-//                String storedEx = exhibitionService.findExhibitionByName(eName);
-//                if(storedEx == null || storedEx.equals("")){
-//                    exhibitionService.saveExhibition(ex);
-//                }
+               // String storedEx = exhibitionService.findExhibitionByName(eName);
+                //System.out.println("storedEx: "+ storedEx);
+               // if(storedEx == null || storedEx.equals("")){
+                    exhibitionService.saveExhibition(ex);
+                //}
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
