@@ -11,4 +11,7 @@ public interface MuseumApiService {
 
     //MMCA서울
     List<ExhibitionDTO> getExibitionListNationalMuseum();
+
+    //서울역사박물관
+    List<ExhibitionDTO> getExibitionListSeoulMuseumOfHistory();
 }
