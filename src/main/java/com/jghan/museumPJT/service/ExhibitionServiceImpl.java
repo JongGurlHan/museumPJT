@@ -16,7 +16,7 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
     //전시조회
     @Override
     public String findExhibitionByName(String eName) {
-        return exhibitionMapper.selectExhibition(eName);
+        return exhibitionMapper.selectExhibitionByName(eName);
     }
 
     //전시저장
@@ -27,5 +27,10 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
         queryResult = exhibitionMapper.insertExhibition(exhibitionDTO);
 
         return (queryResult == 1) ? true : false;
+    }
+
+    @Override
+    public int selectFinishedExhibition(String today) {
+        return exhibitionMapper.selectFinishedExhibition(today);
     }
 }

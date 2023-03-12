@@ -11,5 +11,6 @@ public class ExhibitionDTO {
     private String eImg;
     private String eStart;
     private String eEnd;
+    private int eDisplay;
 
 }

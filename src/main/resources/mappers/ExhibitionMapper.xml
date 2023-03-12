@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jghan.museumPJT.mapper.ExhibitionMapper">
 
-    <select id="selectExhibition" parameterType="String" resultType="String">
+    <!--전시조회-->
+    <select id="selectExhibitionByName" parameterType="String" resultType="String">
         SELECT
             e_name
         FROM
@@ -11,25 +12,37 @@
             e_name = #{eName}
     </select>
 
+    <!--전시등록-->
     <insert id="insertExhibition" parameterType="com.jghan.museumPJT.dto.ExhibitionDTO"  >
-        INSERT INTO e_exhibition(
-        e_museum,
-        e_name,
-        e_link,
-        e_img,
-        e_start,
-        e_end)
+        INSERT INTO
+        e_exhibition(
+            e_museum,
+            e_name,
+            e_link,
+            e_img,
+            e_start,
+            e_end)
             VALUES (
-
-
            #{eMuseum},
             #{eName},
             #{eLink},
             #{eImg},
-            #{eStart},
-            #{eEnd}
+            DATE_FORMAT(#{eStart}, "%Y-%m-%d"),
+            DATE_FORMAT(#{eEnd}, "%Y-%m-%d")
         )
     </insert>
+
+    <!--지난 전시조회-->
+    <select id="selectFinishedExhibition" parameterType="String" resultType="int">
+        <![CDATA[
+        SELECT
+            *
+        FROM
+            e_exhibition
+        WHERE
+            e_end < #{today}
+        ]]>
+    </select>
 
 
 

@@ -6,6 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
 
 import javax.net.ssl.*;
@@ -14,11 +15,13 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MuseumApiServiceImpl implements MuseumApiService {
 
     private final ExhibitionService exhibitionService;
@@ -39,7 +42,7 @@ public class MuseumApiServiceImpl implements MuseumApiService {
                 String eLink = "https://www.leeum.org/exhibition/"+eList.get(i).select("a").attr("href");
                 String eImg =eList.get(i).select("a").select("img").attr("src");
                 String eStart = StringUtils.substringBefore(eList.get(i).select("span.exDate").text(), " ~");
-                if(eStart == null) eStart = "상설전시";
+                if(eStart == null) eStart = null;
                 String eEnd = StringUtils.substringAfter(eList.get(i).select("span.exDate").text(), "~ ");
 
                 ex.setEMuseum("leeum");
@@ -51,12 +54,16 @@ public class MuseumApiServiceImpl implements MuseumApiService {
                 System.out.println("ex = " + ex);
                 exList.add(ex);
 
-               // String storedEx = exhibitionService.findExhibitionByName(eName);
-                //System.out.println("storedEx: "+ storedEx);
-               // if(storedEx == null || storedEx.equals("")){
+                String storedEx = exhibitionService.findExhibitionByName(eName); 
+                if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
                     exhibitionService.saveExhibition(ex);
-                //}
+                }
             }
+            // 2.db상에서 e_end값이 오늘보다 지났다면 eDisplay를 1 -> 0  수정
+            String today = LocalDate.now().toString(); //오늘날짜 구한다
+            int finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            System.out.println("끝난 전시: " + finishedEx);
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
