@@ -61,10 +61,13 @@ public class MuseumApiServiceImpl implements MuseumApiService {
             }
             // 2.db상에서 e_end값이 오늘보다 지났다면 eDisplay를 1 -> 0  수정
             String today = LocalDate.now().toString(); //오늘날짜 구한다
-            int finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
-            System.out.println("끝난 전시: " + finishedEx);
-            
-        } catch (IOException e) {
+            List<ExhibitionDTO> finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            for (int i = 0; i<finishedEx.size(); i++){
+                exhibitionService.updateEdisplayZero(finishedEx.get(i).getEIdx());
+            }
+
+
+            } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return exList;

@@ -11,6 +11,9 @@ public interface ExhibitionService {
     //전시 저장
     boolean saveExhibition(ExhibitionDTO ex);
 
+    List<ExhibitionDTO> selectFinishedExhibition(String today);
 
-    int selectFinishedExhibition(String today);
+    //전시 디스플레이 -> 0
+    void updateEdisplayZero (int eIdx);
+
 }

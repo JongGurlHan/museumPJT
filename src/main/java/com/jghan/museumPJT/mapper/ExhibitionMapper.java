@@ -2,6 +2,8 @@ package com.jghan.museumPJT.mapper;
 import com.jghan.museumPJT.dto.ExhibitionDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 
 @Mapper
 public interface ExhibitionMapper {
@@ -13,6 +15,8 @@ public interface ExhibitionMapper {
     int insertExhibition(ExhibitionDTO exhibitionDTO);
 
     //지난 전시조회
-    int selectFinishedExhibition(String today);
+     List<ExhibitionDTO> selectFinishedExhibition(String today);
+
+     void updateEdisplayZero (int eIdx);
 }
 

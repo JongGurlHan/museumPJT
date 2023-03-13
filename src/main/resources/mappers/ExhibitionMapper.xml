@@ -33,7 +33,7 @@
     </insert>
 
     <!--지난 전시조회-->
-    <select id="selectFinishedExhibition" parameterType="String" resultType="int">
+    <select id="selectFinishedExhibition" parameterType="String" resultType="com.jghan.museumPJT.dto.ExhibitionDTO">
         <![CDATA[
         SELECT
             *
@@ -43,6 +43,14 @@
             e_end < #{today}
         ]]>
     </select>
+
+    <update id="updateEdisplayZero" parameterType="int" >
+        UPDATE e_exhibition
+        SET
+            e_display = 0
+        WHERE
+            e_idx = #{eIdx}
+    </update>
 
 
 

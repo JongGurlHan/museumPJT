@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -30,7 +32,12 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
     }
 
     @Override
-    public int selectFinishedExhibition(String today) {
+    public List<ExhibitionDTO> selectFinishedExhibition(String today) {
         return exhibitionMapper.selectFinishedExhibition(today);
+    }
+
+    @Override
+    public void updateEdisplayZero(int eIdx) {
+        exhibitionMapper.updateEdisplayZero(eIdx);
     }
 }
