@@ -26,6 +26,13 @@ public class MuseumApiServiceImpl implements MuseumApiService {
 
     private final ExhibitionService exhibitionService;
 
+    @Override
+    public void updateExhibitionAll() {
+        getExibitionListLeeum();
+        getExibitionListNationalMuseum();
+        getExibitionListSeoulMuseumOfHistory();
+    }
+
     //====리움미술관====
     @Override
     public List<ExhibitionDTO> getExibitionListLeeum() {
@@ -51,7 +58,7 @@ public class MuseumApiServiceImpl implements MuseumApiService {
                 ex.setEImg(eImg);
                 ex.setEStart(eStart);
                 ex.setEEnd(eEnd);
-                System.out.println("ex = " + ex);
+                ex.setEDisplay(1);
                 exList.add(ex);
 
                 String storedEx = exhibitionService.findExhibitionByName(eName); 
@@ -104,6 +111,16 @@ public class MuseumApiServiceImpl implements MuseumApiService {
                 ex.setEEnd(eEnd);
                 ex.setEImg(eImg);
                 exList.add(ex);
+
+                String storedEx = exhibitionService.findExhibitionByName(eName);
+                if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
+                    exhibitionService.saveExhibition(ex);
+                }
+            }
+            String today = LocalDate.now().toString(); //오늘날짜 구한다
+            List<ExhibitionDTO> finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            for (int i = 0; i<finishedEx.size(); i++){
+                exhibitionService.updateEdisplayZero(finishedEx.get(i).getEIdx());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -148,10 +165,15 @@ public class MuseumApiServiceImpl implements MuseumApiService {
                 ex.setEEnd(eEnd);
                 exList.add(ex);
 
-//                String storedEx = exhibitionService.findExhibitionByName(eName);
-//                if(storedEx == null || storedEx.equals("")){
-//                    exhibitionService.saveExhibition(ex);
-//                }
+                String storedEx = exhibitionService.findExhibitionByName(eName);
+                if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
+                    exhibitionService.saveExhibition(ex);
+                }
+            }
+            String today = LocalDate.now().toString(); //오늘날짜 구한다
+            List<ExhibitionDTO> finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            for (int i = 0; i<finishedEx.size(); i++){
+                exhibitionService.updateEdisplayZero(finishedEx.get(i).getEIdx());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -15,7 +15,13 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
 
     private final ExhibitionMapper exhibitionMapper;
 
-    //전시조회
+    //전체 전시조회
+    @Override
+    public List<ExhibitionDTO> getExhibitionAll() {
+       return exhibitionMapper.selectExhibitionALL();
+    }
+
+    //전시조회 - eName으로
     @Override
     public String findExhibitionByName(String eName) {
         return exhibitionMapper.selectExhibitionByName(eName);
