@@ -21,6 +21,8 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model){
     	List<ExhibitionDTO> exList = exhibitionService.getExhibitionAll();
+        model.addAttribute("exList", exList);
+
         return "index";
     }
 
