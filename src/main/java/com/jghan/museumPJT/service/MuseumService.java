@@ -4,10 +4,11 @@ import com.jghan.museumPJT.dto.ExhibitionDTO;
 
 import java.util.List;
 
-public interface MuseumApiService {
+public interface MuseumService {
 
     //전체 전시 업데이트
     void updateExhibitionAll();
+    
     //리움미술관
     List<ExhibitionDTO> getExibitionListLeeum();
 

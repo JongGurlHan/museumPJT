@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class MuseumApiServiceImpl implements MuseumApiService {
+public class MuseumServiceImpl implements MuseumService {
 
     private final ExhibitionService exhibitionService;
 
@@ -135,7 +135,7 @@ public class MuseumApiServiceImpl implements MuseumApiService {
         List<ExhibitionDTO> exList = new ArrayList<>();
         try{
             if(URL.indexOf("https://") >= 0){
-                MuseumApiServiceImpl.setSSL();
+                MuseumServiceImpl.setSSL();
             }
 
             doc = Jsoup.connect(URL).get();

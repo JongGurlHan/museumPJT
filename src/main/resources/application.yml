@@ -4,12 +4,12 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: jghan
-    url: jdbc:mysql://localhost:3306/museumPJT?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    password: '0000'
-
-#    driver-class-name: org.mariadb.jdbc.Driver
-#    username: root
-#    url: jdbc:mariadb://127.0.0.1:3307/museumPJT?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: jghan
+#    url: jdbc:mysql://localhost:3306/museumPJT?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
 #    password: '0000'
+
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    url: jdbc:mariadb://127.0.0.1:3307/museumPJT?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    password: '0000'

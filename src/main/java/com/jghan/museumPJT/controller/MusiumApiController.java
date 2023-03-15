@@ -1,22 +1,24 @@
 package com.jghan.museumPJT.controller;
 
-import com.jghan.museumPJT.dto.CMRespDto;
-import com.jghan.museumPJT.dto.ExhibitionDTO;
-import com.jghan.museumPJT.service.ExhibitionService;
-import com.jghan.museumPJT.service.MuseumApiService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.jghan.museumPJT.dto.CMRespDto;
+import com.jghan.museumPJT.dto.ExhibitionDTO;
+import com.jghan.museumPJT.service.ExhibitionService;
+import com.jghan.museumPJT.service.MuseumService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class MusiumApiController {
 
-    private final MuseumApiService museumApiService;
+    private final MuseumService museumService;
     private final ExhibitionService exhibitionService;
 
     @GetMapping("/api/exhibition/all")
@@ -29,25 +31,25 @@ public class MusiumApiController {
 
     @GetMapping("/api/display/all")
     public ResponseEntity<?> updateExhibitionAll(){
-        museumApiService.updateExhibitionAll();
+        museumService.updateExhibitionAll();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", null), HttpStatus.OK);
     }
 
     @GetMapping("/api/display/leeum")
     public ResponseEntity<?> displayLeeum(){
-        List<ExhibitionDTO> exList = museumApiService.getExibitionListLeeum();
+        List<ExhibitionDTO> exList = museumService.getExibitionListLeeum();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
     }
 
     @GetMapping("/api/display/nationalMuseum")
     public ResponseEntity<?> displayNationalMuseum(){
-        List<ExhibitionDTO> exList = museumApiService.getExibitionListNationalMuseum();
+        List<ExhibitionDTO> exList = museumService.getExibitionListNationalMuseum();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
     }
 
     @GetMapping("/api/display/seoulMuseumOfHistory")
     public ResponseEntity<?> displaySeoulMuseumOfHistory(){
-        List<ExhibitionDTO> exList = museumApiService.getExibitionListSeoulMuseumOfHistory();
+        List<ExhibitionDTO> exList = museumService.getExibitionListSeoulMuseumOfHistory();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
     }
 
