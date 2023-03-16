@@ -38,6 +38,7 @@
     ======================================================== -->
 </head>
 
+
 <body>
 
 <!-- ======= Header ======= -->
@@ -104,25 +105,62 @@
 
 <main id="main" data-aos="fade" data-aos-delay="1500">
 
+<!-- Button trigger modal -->
+		
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
         <div class="container-fluid">
-
+        
             <div class="row gy-4 justify-content-center">
 
                 <div th:each="ex: ${exList}" class="col-xl-3 col-lg-4 col-md-6">
                     <div class="gallery-item h-100">
                         <img th:src="${ex.eImg}" class="img-fluid" alt="">
                         <div class="gallery-links d-flex align-items-center justify-content-center" style="text-align: center;">
-                            <a th:href="${ex.eImg}" title="Gallery 1" class="glightbox preview-link">
-                                <i class="bi bi-arrows-angle-expand"><h5>자세히</h5></i>
-                            </a>
+                            <!-- <a th:href="${ex.eImg}" title="Gallery 23" class="glightbox preview-link">
+                                
+                                <i class="bi bi-arrows-angle-expand"><h5>자세히</h5>
+                                
+								</i>
+                            </a> -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+							  Launch demo modal
+							</button>
+ 
+                            
+                            
                             <a th:href="@{${ex.eLink}}" class="details-link">
                                 <i class="bi bi-link-45deg"><h5>사이트</h5></i>
                             </a>
                         </div>
                     </div>
-                </div><!-- End Gallery Item -->
+                </div>
+                
+                
+                <!-- Modal -->
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-centered" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        ...
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-primary">Save changes</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+					
+
+					<!-- End Gallery Item -->
 
 <!--                <div class="col-xl-3 col-lg-4 col-md-6">-->
 <!--                    <div class="gallery-item h-100">-->
@@ -292,7 +330,7 @@
 <!-- Vendor JS Files -->
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<!-- <script src="assets/vendor/glightbox/js/glightbox.min.js"></script> -->
 <script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 
