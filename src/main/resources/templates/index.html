@@ -36,6 +36,44 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+
+    <style>
+<!--       &lt;!&ndash; .modal {-->
+<!--            display: none; /* Hidden by default */-->
+<!--            position: fixed; /* Stay in place */-->
+<!--            z-index: 1; /* Sit on top */-->
+<!--            left: 0;-->
+<!--            top: 0;-->
+<!--            width: 100%; /* Full width */-->
+<!--            height: 100%; /* Full height */-->
+<!--            overflow: auto; /* Enable scroll if needed */-->
+<!--            background-color: rgb(0,0,0); /* Fallback color */-->
+<!--            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */-->
+<!--        }-->
+
+<!--        /* Modal Content/Box */-->
+<!--        .modal-content {-->
+<!--            background-color: #fefefe;-->
+<!--            margin: 15% auto; /* 15% from the top and centered */-->
+<!--            padding: 20px;-->
+<!--            border: 1px solid #888;-->
+<!--            width: 50%; /* Could be more or less, depending on screen size */-->
+<!--        }-->
+<!--        /* The Close Button */-->
+<!--        .close {-->
+<!--            color: #aaa;-->
+<!--            float: right;-->
+<!--            font-size: 28px;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!--        .close:hover,-->
+<!--        .close:focus {-->
+<!--            color: black;-->
+<!--            text-decoration: none;-->
+<!--            cursor: pointer;-->
+<!--        }&ndash;&gt;-->
+
+    </style>
 </head>
 
 
@@ -109,54 +147,23 @@
 		
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
-        <div class="container-fluid">
-        
-            <div class="row gy-4 justify-content-center">
+        <div<div class="row gy-4 justify-content-center">
 
                 <div th:each="ex: ${exList}" class="col-xl-3 col-lg-4 col-md-6">
                     <div class="gallery-item h-100">
                         <img th:src="${ex.eImg}" class="img-fluid" alt="">
                         <div class="gallery-links d-flex align-items-center justify-content-center" style="text-align: center;">
-                            <!-- <a th:href="${ex.eImg}" title="Gallery 23" class="glightbox preview-link">
-                                
-                                <i class="bi bi-arrows-angle-expand"><h5>자세히</h5>
-                                
-								</i>
-                            </a> -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-							  Launch demo modal
-							</button>
- 
-                            
-                            
+
+                            <a th:href="${ex.eImg}" title="Gallery 23" class="glightbox preview-link">
+                                <i class="bi bi-arrows-angle-expand"><h5>자세히</h5></i>
+                            </a>
+
                             <a th:href="@{${ex.eLink}}" class="details-link">
                                 <i class="bi bi-link-45deg"><h5>사이트</h5></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                
-                <!-- Modal -->
-				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-				  <div class="modal-dialog modal-dialog-centered" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body">
-				        ...
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-primary">Save changes</button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
 
 					
 
@@ -330,7 +337,8 @@
 <!-- Vendor JS Files -->
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<!-- <script src="assets/vendor/glightbox/js/glightbox.min.js"></script> -->
+<!--<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>-->
+<script src="assets/vendor/glightbox/js/glightbox.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 

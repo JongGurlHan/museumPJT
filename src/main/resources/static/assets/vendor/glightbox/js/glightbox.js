@@ -2486,8 +2486,37 @@
       prev: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 477.175 477.175" xml:space="preserve"><g><path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"/></g></svg>'
     }
   };
-  defaults.slideHTML = "<div class=\"gslide\">\n    <div class=\"gslide-inner-content\">\n        <div class=\"ginner-container\">\n            <div class=\"gslide-media\">\n            </div>\n            <div class=\"gslide-description\">\n                <div class=\"gdesc-inner\">\n                    <h4 class=\"gslide-title\"></h4>\n                    <div class=\"gslide-desc\"></div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>";
-  defaults.lightboxHTML = "<div id=\"glightbox-body\" class=\"glightbox-container\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"false\">\n    <div class=\"gloader visible\"></div>\n    <div class=\"goverlay\"></div>\n    <div class=\"gcontainer\">\n    <div id=\"glightbox-slider\" class=\"gslider\"></div>\n    <button class=\"gclose gbtn\" aria-label=\"Close\" data-taborder=\"3\">{closeSVG}</button>\n    <button class=\"gprev gbtn\" aria-label=\"Previous\" data-taborder=\"2\">{prevSVG}</button>\n    <button class=\"gnext gbtn\" aria-label=\"Next\" data-taborder=\"1\">{nextSVG}</button>\n</div>\n</div>";
+
+
+  defaults.slideHTML =
+    '<div class="gslide">'+
+      '<div class="gslide-inner-content">'+
+        '<div class="ginner-container">'+
+              '<div class="gslide-media"></div>'+
+              '<div class="gslide-description">'+
+                  '<div class="gdesc-inner">'+
+                    '<h1 id="test">test</h1>'+
+                    '<h4 class="gslide-title"></h4>'+
+                  '<div class="gslide-desc"></div>'+
+                '</div>'+
+              '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  defaults.lightboxHTML =
+      '<div id="glightbox-body" class="glightbox-container" tabindex="-1" role="dialog" aria-hidden="false"> '+
+        '<div class="gloader visible"></div>'+
+        '<div class="goverlay"></div>'+
+        '<div class="gcontainer">'+
+        '<div id="glightbox-slider" class="gslider"></div>'+
+        '<button class="gclose gbtn" aria-label="Close" data-taborder="3">{closeSVG}</button>'+
+        '<button class="gprev gbtn" aria-label="Previous" data-taborder="2">{prevSVG}</button>'+
+        '<button class="gnext gbtn" aria-label="Next" data-taborder="1">{nextSVG}</button>'+
+        '</div>'+
+      '</div>';
+
+
+
 
   var GlightboxInit = function () {
     function GlightboxInit() {
