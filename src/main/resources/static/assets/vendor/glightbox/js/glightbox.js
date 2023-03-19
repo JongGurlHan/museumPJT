@@ -2487,6 +2487,9 @@
     }
   };
 
+  var eName = $('input[name=e_name]').val();
+
+  //console.log(eName);
 
   defaults.slideHTML =
     '<div class="gslide">'+
@@ -2503,6 +2506,12 @@
         '</div>'+
       '</div>'+
     '</div>';
+
+//var exList = [[${exList}]];
+//                  console.log(exList[0]);
+//                  console.log(exList[0].ename);
+//                  document.getElementById("test").innerHTML="hello";
+
   defaults.lightboxHTML =
       '<div id="glightbox-body" class="glightbox-container" tabindex="-1" role="dialog" aria-hidden="false"> '+
         '<div class="gloader visible"></div>'+

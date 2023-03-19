@@ -5,7 +5,7 @@
     <!--DB-전체전시조회-->
     <select id="selectExhibitionALL" resultType="com.jghan.museumPJT.dto.ExhibitionDTO">
         SELECT
-        e_idx, e_name, e_link, e_img, e_start, e_img, e_end
+        e_idx, e_name, e_link, e_img, e_museum, e_start, e_img, e_end
         FROM
         e_exhibition
         WHERE

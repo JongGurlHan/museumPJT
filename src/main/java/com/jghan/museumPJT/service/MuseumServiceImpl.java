@@ -52,7 +52,7 @@ public class MuseumServiceImpl implements MuseumService {
                 if(eStart == null) eStart = null;
                 String eEnd = StringUtils.substringAfter(eList.get(i).select("span.exDate").text(), "~ ");
 
-                ex.setEMuseum("leeum");
+                ex.setEMuseum("리움미술관");
                 ex.setEName(eName);
                 ex.setELink(eLink);
                 ex.setEImg(eImg);

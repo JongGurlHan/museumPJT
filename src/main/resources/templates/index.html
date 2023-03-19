@@ -36,6 +36,7 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <script src="assets/vendor/glightbox/js/glightbox.js"></script>
 
     <style>
 <!--       &lt;!&ndash; .modal {-->
@@ -144,26 +145,37 @@
 <main id="main" data-aos="fade" data-aos-delay="1500">
 
 <!-- Button trigger modal -->
-		
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
-        <div<div class="row gy-4 justify-content-center">
+        <div class="row gy-4 justify-content-center">
 
                 <div th:each="ex: ${exList}" class="col-xl-3 col-lg-4 col-md-6">
                     <div class="gallery-item h-100">
                         <img th:src="${ex.eImg}" class="img-fluid" alt="">
-                        <div class="gallery-links d-flex align-items-center justify-content-center" style="text-align: center;">
+                        <div class="gallery-links" style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
 
-                            <a th:href="${ex.eImg}" title="Gallery 23" class="glightbox preview-link">
-                                <i class="bi bi-arrows-angle-expand"><h5>자세히</h5></i>
-                            </a>
-
+<!--                            <a th:href="${ex.eImg}" title="Gallery 23" class="glightbox preview-link">-->
+<!--                                <i class="bi bi-arrows-angle-expand"><h5>자세히</h5></i>-->
+<!--                            </a>-->
+                            <p th:text="${ex.eName}">전시명</p>
+                            <p th:text="|${ex.eStart} - ${ex.eEnd}|">전시기간</p>
+                            <p th:text="${ex.eMuseum}">전시관</p>
                             <a th:href="@{${ex.eLink}}" class="details-link">
-                                <i class="bi bi-link-45deg"><h5>사이트</h5></i>
+                                <i class="bi bi-link-45deg"><h6>사이트이동</h6></i>
                             </a>
+
                         </div>
                     </div>
                 </div>
+
+            <script th:inline="javascript">
+
+
+
+            </script>
+
 
 					
 
@@ -338,7 +350,9 @@
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <!--<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>-->
+
 <script src="assets/vendor/glightbox/js/glightbox.js"></script>
+
 <script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
 
