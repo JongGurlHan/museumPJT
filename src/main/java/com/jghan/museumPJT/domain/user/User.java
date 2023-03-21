@@ -31,9 +31,6 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String sex;
-
     private String role;
 
     private LocalDateTime createDate;
@@ -55,7 +52,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", sex='" + sex + '\'' +
                 ", role='" + role + '\'' +
                 ", createDate=" + createDate +
                 ", lastLogin='" + lastLogin + '\'' +

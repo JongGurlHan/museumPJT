@@ -21,16 +21,12 @@ public class JoinDto {
     @NotBlank
     private  String name;
 
-    @NotBlank
-    private  String sex;
-
     public User toEntity(){
         return User.builder()
                 .username(username)
                 .password(password)
                 .email(email)
                 .name(name)
-                .sex(sex)
                 .build();
     }
 }

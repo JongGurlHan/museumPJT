@@ -44,7 +44,7 @@ public class UserController {
         userService.join(user);
         log.info(user.toString());
 
-        return "auth/login";
+        return "user/login";
 
     }
 
