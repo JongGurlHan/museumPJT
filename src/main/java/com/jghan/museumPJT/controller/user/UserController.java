@@ -2,8 +2,10 @@ package com.jghan.museumPJT.controller.user;
 
 import javax.validation.Valid;
 
+import com.jghan.museumPJT.handler.ex.CustomValidationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -13,6 +15,9 @@ import com.jghan.museumPJT.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
 
 @RequiredArgsConstructor
 @Controller
@@ -33,18 +38,25 @@ public class UserController {
 	}
 	
 	@PostMapping("/user/join")
-    public String signup(@Valid JoinDto signupDto, BindingResult bindingResult) { //key=value (x-www-form-urlencoded)
+    public String signup(@Valid JoinDto joinDto, BindingResult bindingResult) { //key=value (x-www-form-urlencoded)
+
+		if(bindingResult.hasErrors()){
+			HashMap<String, String> errorMap = new HashMap<>();
+
+			for(FieldError error : bindingResult.getFieldErrors()){
+				errorMap.put(error.getField(), error.getDefaultMessage());
+			}
+			throw new CustomValidationException("유효성검사 실패함", errorMap);
+
+		}else{
+			//User < - SingupDto
+			User user = joinDto.toEntity();
+			userService.join(user);
+			return "user/login";
+		}
 
 
 
-        log.info(signupDto.toString());
-
-        //User < - SingupDto
-        User user = signupDto.toEntity();
-        userService.join(user);
-        log.info(user.toString());
-
-        return "user/login";
 
     }
 
