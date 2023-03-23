@@ -25,8 +25,8 @@ public class SecurityConfig{
                 .anyRequest().permitAll() //어떤 요청이라도 허용.
                 .and()
                 .formLogin()
-                .loginPage("/user/login")
-                .loginProcessingUrl("/user/login")
+                .loginPage("/user/login") //get
+                .loginProcessingUrl("/user/login") //post
                 .defaultSuccessUrl("/");
         return http.build();
 
