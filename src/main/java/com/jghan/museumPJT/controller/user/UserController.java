@@ -1,26 +1,26 @@
 package com.jghan.museumPJT.controller.user;
 
+import java.util.HashMap;
+
 import javax.validation.Valid;
 
-import com.jghan.museumPJT.config.user.PrincipalDetails;
-import com.jghan.museumPJT.handler.ex.CustomValidationException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.jghan.museumPJT.config.user.PrincipalDetails;
 import com.jghan.museumPJT.domain.user.User;
 import com.jghan.museumPJT.dto.user.JoinDto;
+import com.jghan.museumPJT.handler.ex.CustomValidationException;
 import com.jghan.museumPJT.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.HashMap;
 
 @RequiredArgsConstructor
 @Controller
@@ -64,8 +64,9 @@ public class UserController {
 	}
 
 	@GetMapping("/user/{id}/update")
-	public String update(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails){
+	public String update(@PathVariable int id, @AuthenticationPrincipal PrincipalDetails principalDetails, Model model){
 		System.out.println("세션정보:" + principalDetails.getUser());
+		model.addAttribute("principal", principalDetails.getUser() );
 		return "user/update";
 	}
 

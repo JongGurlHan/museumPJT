@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -26,6 +28,17 @@ public class UserServiceImpl implements UserService{
         User userEntity = userRepository.save(user);
         return userEntity;
     }
+
+	@Override
+	@Transactional
+	public User update(int id, User entity) {
+		Optional<User> userEntity = userRepository.findById(id);
+		//userEntity.set
+		
+		
+
+		return null;
+	}
 
 
 
