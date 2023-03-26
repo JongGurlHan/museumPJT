@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.validation.Valid;
 
+import com.jghan.museumPJT.dto.user.UserProfileDto;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,6 +62,18 @@ public class UserController {
 	@GetMapping("/user/{id}")
 	public String profile(@PathVariable int id){
 		return "user/profile";
+	}
+
+	//마이페이지
+	@GetMapping({"/user/{pageUserId}"})
+	public String profile (@PathVariable int pageUserId, Model model,
+				   @AuthenticationPrincipal PrincipalDetails principalDetails){
+
+		UserProfileDto userDto = userService.userProfile(pageUserId, principalDetails.getUser().getId());
+
+		model.addAttribute("userDto", userDto);
+		return "user/profile";
+
 	}
 
 	@GetMapping("/user/{id}/update")

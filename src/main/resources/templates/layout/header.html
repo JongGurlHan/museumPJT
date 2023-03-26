@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <div th:fragment="head">
+        <head>
+            <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+            <title>우리동네 전시회</title>
+            <meta content="" name="description">
+            <meta content="" name="keywords">
+
+            <!-- Favicons -->
+            <link href="assets/img/favicon.png" rel="icon">
+            <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+            <!-- Google Fonts -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+            <!-- Vendor CSS Files -->
+            <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+            <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+            <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+            <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+            <!-- Template Main CSS File -->
+            <link href="assets/css/main.css" rel="stylesheet">
+
+            <!-- =======================================================
+            * Template Name: PhotoFolio
+            * Updated: Mar 10 2023 with Bootstrap v5.2.3
+            * Template URL: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/
+            * Author: BootstrapMade.com
+            * License: https://bootstrapmade.com/license/
+            ======================================================== -->
+            <script src="assets/vendor/glightbox/js/glightbox.js"></script>
+
+            <!-- 제이쿼리 -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        </head>
+    </div>
+
+
+    <div th:fragment="menu">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <!--<input type="text" id="principalId" th:value="${#authentication.principal.user.id}"/>-->
+
+            <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <i class="bi bi-camera"></i>
+                <h1>test</h1>
+            </a>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="index.html" class="active">홈</a></li>
+                    <li><a href="about.html">지도로 보기</a></li>
+                    <li><a href="services.html">게시판</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown"><a href="#"><span>내계정</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a th:href="@{/user/join}">회원가입</a></li>
+                            <!-- <input type="text" id="principalId" th:value="${#authentication.principal.user.id}"/> -->
+
+                            <li><a th:href="@{/user/login}">로그인</a></li>
+                            <!--                        <li><a th:href="@{|/user/${principal.user.id}/update|}">회원정보 수정</a></li>-->
+                            <!--<li><a  href="/user/1" th:href="@{|/user/${#authentication.principal.user.id}|}" />마이페이지</li>-->
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav><!-- .navbar -->
+
+            <div class="header-social-links">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+            </div>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+        </div>
+    </header>
+    <!-- End Header -->
+
+</div>
+</html>

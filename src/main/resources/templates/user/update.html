@@ -1,6 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layout/header" :: head />
 
-<!-- <div th:replace="layout/header" :: menu /> -->
+<div th:replace="layout/header" :: menu />
 <!--프로필셋팅 메인-->
 <main class="main">
     <!--프로필셋팅 섹션-->
@@ -11,7 +12,7 @@
             <!--프로필셋팅 아이디영역-->
             <div class="content-item__01" th:object="${principal}">
                 <div class="item__img">
-                    <img src="#" onerror="this.src='/images/person.png'" />
+<!--                    <img src="#" onerror="this.src='/images/person.png'" />-->
                 </div>
                 <div class="item__username">
                     <h2 th:text="*{username}">이름</h2>
@@ -26,13 +27,13 @@
             <div class="content-item__02">
                 <div class="item__title">이름</div>
                 <div class="item__input">
-                    <input type="text" name="name" placeholder="이름" value="겟인데어" th:field="*{name}" required="required" />
+                    <input type="text" name="name" placeholder="이름" value="이름" th:field="*{name}" required="required" />
                 </div>
             </div>
             <div class="content-item__03">
                 <div class="item__title">유저네임</div>
                 <div class="item__input">
-                    <input type="text" name="username" placeholder="유저네임" value="TherePrograming" readonly="readonly" th:field="*{username}"/>
+                    <input type="text" name="username" placeholder="유저네임" value="유저네임" readonly="readonly" th:field="*{username}"/>
                 </div>
             </div>
             <div class="content-item__04">
@@ -72,4 +73,4 @@
     </section>
 </main>
 
-<script src="/js/update.js"></script>
+<script src="/js/"></script>
