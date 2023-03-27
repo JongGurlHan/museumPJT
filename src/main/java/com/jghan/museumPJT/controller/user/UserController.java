@@ -59,19 +59,16 @@ public class UserController {
 			return "user/login";
 		}
     }
-	@GetMapping("/user/{id}")
-	public String profile(@PathVariable int id){
-		return "user/profile";
-	}
+
 
 	//마이페이지
 	@GetMapping({"/user/{pageUserId}"})
 	public String profile (@PathVariable int pageUserId, Model model,
-				   @AuthenticationPrincipal PrincipalDetails principalDetails){
+						   @AuthenticationPrincipal PrincipalDetails principalDetails){
 
 		UserProfileDto userDto = userService.userProfile(pageUserId, principalDetails.getUser().getId());
 
-		model.addAttribute("userDto", userDto);
+		model.addAttribute("dto", userDto);
 		return "user/profile";
 
 	}
