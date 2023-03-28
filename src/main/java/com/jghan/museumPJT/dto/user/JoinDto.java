@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 public class JoinDto {
     @Size(min=2, max = 20)
     @NotBlank
-    private  String username;
+    private  String username; //아이디
 
     @NotBlank
     private  String password;
@@ -18,15 +18,11 @@ public class JoinDto {
     @NotBlank
     private  String email;
 
-    @NotBlank
-    private  String name;
-
     public User toEntity(){
         return User.builder()
                 .username(username)
                 .password(password)
                 .email(email)
-                .name(name)
                 .build();
     }
 }

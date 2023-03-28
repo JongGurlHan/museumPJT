@@ -38,8 +38,6 @@ public class UserServiceImpl implements UserService{
 
         User userEntity = userRepository.findById(id).orElseThrow(() -> { return new CustomValidationApiException("찾을 수 없는 id입니다.");} );
 
-        userEntity.setName(user.getName());
-
         String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         userEntity.setPassword(encPassword);
