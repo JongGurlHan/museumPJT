@@ -17,28 +17,48 @@
         <section class="login">
             <article class="login__form__container">
 
-                <!--회원가입 폼-->
+                <!--로그인 인풋-->
                 <div class="login__form">
                     <!--로고-->
                     <h1><img src="/images/logo.jpg" alt=""></h1>
                     <!--로고end-->
 
-                    <!--회원가입 인풋-->
-                    <form class="login__input" th:action="@{/user/login}" method="post">
-                        <input type="text" name="username" placeholder="유저네임" required="required" />
-                        <input type="password" name="password" placeholder="패스워드" required="required" />
-                        <button>가입</button>
+                    <!--로그인 인풋-->
+                    <form class="login__input" th:action="@{/user/login}" method="post" >
+                        <input type="text" name="username" placeholder="아이디" required="required" />
+                        <input type="password" name="password" placeholder="비밀번호" required="required" />
+                        <button>로그인</button>
                     </form>
-                    <!--회원가입 인풋end-->
-                </div>
-                <!--회원가입 폼end-->
+                    <!--로그인 인풋end-->
 
-                <!--계정이 있으신가요?-->
-                <div class="login__register">
-                    <span>계정이 있으신가요?</span>
-                    <a href="/user/login">로그인</a>
+                    <!-- 또는 -->
+                    <div class="login__horizon">
+                        <div class="br"></div>
+                        <div class="or">또는</div>
+                        <div class="br"></div>
+                    </div>
+                    <!-- 또는end -->
+
+                    <!-- Oauth 소셜로그인 -->
+                    <div class="login__facebook">
+                        <button th:onclick="|javascript:location.href='@{/oauth2/authorization/google}'|">
+                        <i class="fab fa-google-square"></i>
+                        <span>google로 로그인</span>
+                        </button>
+                    </div>
+                    <!-- Oauth 소셜로그인end -->
+
+
+
                 </div>
-                <!--계정이 있으신가요?end-->
+
+                <!--계정이 없으신가요?-->
+                <div class="login__register">
+                    <span>계정이 없으신가요?</span>
+                    <a href="/user/join">가입하기</a>
+                </div>
+                <!--계정이 없으신가요?end-->
+
 
             </article>
         </section>
