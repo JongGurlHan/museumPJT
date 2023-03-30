@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 import java.util.UUID;
@@ -23,6 +24,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         System.out.println("Oauth2 서비스 탐");
 
@@ -46,9 +48,9 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
                     .email(email)
                     .role("ROLE_USER")
                     .build();
-
             return new PrincipalDetails(userRepository.save(user), oAuth2User.getAttributes());
         }else{ //이전에 페이스북 로그인
+        	userRepository.updateLastLogin(userEntity.getId());
             return new PrincipalDetails(userEntity, oAuth2User.getAttributes()) ;
         }
 
