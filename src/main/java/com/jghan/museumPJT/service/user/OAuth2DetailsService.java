@@ -51,6 +51,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             return new PrincipalDetails(userRepository.save(user), oAuth2User.getAttributes());
         }else{ //이전에 페이스북 로그인
         	userRepository.updateLastLogin(userEntity.getId());
+        	userRepository.updateLoginCount(userEntity.getId());
             return new PrincipalDetails(userEntity, oAuth2User.getAttributes()) ;
         }
 

@@ -10,6 +10,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findByUsername(String username);
     
     @Modifying
-    @Query(value = "UPDATE user SET lastLogin = NOW() WHERE id = #{id}", nativeQuery = true)
+    @Query(value = "UPDATE user SET lastLogin = NOW() WHERE id = :id", nativeQuery = true)
     void updateLastLogin(@Param("id") int id);
+
+    @Modifying
+    @Query(value = "UPDATE user SET loginCount = user.loginCount+1 WHERE id = :id", nativeQuery = true)
+	void updateLoginCount(@Param("id") int id);
+    
+    
 }
