@@ -16,13 +16,59 @@
             <div class="col-lg-6 text-center">
                 <h2><span>전국 곳곳의</span>전시들을 한 눈에!</h2>
                 <p>Dummy mention</p>
-                <a href="contact.html" class="btn-get-started">Available for hire</a>
+                <!-- <a href="contact.html" class="btn-get-started">Available for hire</a> -->
+                
+                <!-- 검색창 -->
+	            <div class="d-flex">
+		        	<input class="form-control me-2" id="search" type="search" placeholder="전시명, 전시관을 찾아보세요." aria-label="Search">
+					<button type="button" onclick="javascript:searchExhibition();" class="btn btn-primary me-1">조회</button>
+		        </div>
+	            
+                
             </div>
         </div>
     </div>
 </section><!-- End Hero Section -->
 
-<main id="main" data-aos="fade" data-aos-delay="1500">
+
+<script>
+function searchExhibition() {
+    /* event.preventDefault(); */
+
+	console.log("test start");
+    //form의 profileUpdate테그를 찾아서 그 폼테그가 들고 있는 정보를 시리얼라이즈
+    //let data = $("#search").serialize();
+    let data = document.getElementById("search").value;
+
+	console.log(data);
+    
+/*     $.ajax({
+        type:"put",
+		url : `/api/search/`,
+        data: data,
+        //contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        dataType: "json"
+    }).done(res =>{ //Http상태코드 200번대 done이 뜬다.
+        console.log("조회 성공", res);        
+    }).fail(error => {
+       if(error.data ==null){
+           alert(error.responseJSON.message);
+       }else{
+           //json object를 Json 문자열로 변환
+           alert(JSON.stringify(error.responseJSON.data));
+           }
+    }); */
+
+}
+
+
+</script>
+
+
+
+<!-- 애니메이션 효과 -->
+<!-- <main id="main" data-aos="fade" data-aos-delay="1500"> -->
+<main id="main">
 
 <!-- Button trigger modal -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -14,6 +14,13 @@ import java.util.List;
 public class ExhibitionServiceImpl implements  ExhibitionService{
 
     private final ExhibitionMapper exhibitionMapper;
+    
+    //전시검색
+    @Override
+	public List<ExhibitionDTO> searchExhibition(String keyword) {
+    	//return exhibitionMapper.selectExhibition(keyword);
+    	return null;
+	}
 
     //전체 전시조회
     @Override
@@ -46,4 +53,6 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
     public void updateEdisplayZero(int eIdx) {
         exhibitionMapper.updateEdisplayZero(eIdx);
     }
+
+	
 }

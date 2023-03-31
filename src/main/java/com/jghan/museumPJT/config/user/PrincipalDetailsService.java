@@ -26,6 +26,7 @@ public class PrincipalDetailsService implements UserDetailsService {
         }else{
         	//최근 로그인 날짜 업데이트
         	userRepository.updateLastLogin(userEntity.getId());
+        	userRepository.updateLoginCount(userEntity.getId());
             return new PrincipalDetails(userEntity);
 
         }

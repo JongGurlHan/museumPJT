@@ -55,7 +55,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             return new PrincipalDetails(userEntity, oAuth2User.getAttributes()) ;
         }
 
-
+        //https://datamoney.tistory.com/333 소셜로그인 추가
 
         //{sub=106678981716946556905,
         // name=JG HAN,

@@ -5,7 +5,10 @@ import com.jghan.museumPJT.dto.ExhibitionDTO;
 import java.util.List;
 
 public interface ExhibitionService {
-
+	
+	//전시 검색
+	List<ExhibitionDTO> searchExhibition(String keyword);
+	
     //전체 전시 조회
     List<ExhibitionDTO> getExhibitionAll();
 
