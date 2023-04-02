@@ -8,6 +8,9 @@ import java.util.List;
 @Mapper
 public interface ExhibitionMapper {
 
+    //전시 검색
+    List<ExhibitionDTO> selectExhibition(String keyword);
+
     //전체 전시 조회
     List<ExhibitionDTO> selectExhibitionALL();
 
@@ -22,7 +25,6 @@ public interface ExhibitionMapper {
 
      //전시 진행여부 변경
      void updateEdisplayZero (int eIdx);
-
 
 
 }

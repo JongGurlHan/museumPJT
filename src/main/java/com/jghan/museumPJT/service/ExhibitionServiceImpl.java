@@ -18,8 +18,7 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
     //전시검색
     @Override
 	public List<ExhibitionDTO> searchExhibition(String keyword) {
-    	//return exhibitionMapper.selectExhibition(keyword);
-    	return null;
+    	return exhibitionMapper.selectExhibition(keyword);
 	}
 
     //전체 전시조회

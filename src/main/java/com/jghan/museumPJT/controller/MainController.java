@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jghan.museumPJT.config.user.PrincipalDetails;
@@ -30,11 +31,12 @@ public class MainController {
     
     @ResponseBody
     @GetMapping("/api/search")
-    public String search(){
-    	//List<ExhibitionDTO> exList = exhibitionService.searchExhibition();
+    public String search(@RequestParam("keyword") String keyword){
+    	List<ExhibitionDTO> exList = exhibitionService.searchExhibition(keyword);
 
+        System.out.println(exList);
 
-        return "hello";
+        return "keyword";
     }
 
 

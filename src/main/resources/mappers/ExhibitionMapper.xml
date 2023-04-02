@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jghan.museumPJT.mapper.ExhibitionMapper">
 
+    <!--전시 검색-->
+    <select id="selectExhibition" parameterType="String" resultType="com.jghan.museumPJT.dto.ExhibitionDTO">
+        SELECT
+            e_name, e_link, e_img, e_start, e_end, e_museum
+        FROM
+            e_exhibition
+        WHERE
+            e_name LIKE CONCAT('%',#{keyword},'%')
+        OR
+            e_museum LIKE CONCAT('%',#{keyword},'%')
+        AND
+            e_display = 1
+    </select>
+
     <!--DB-전체전시조회-->
     <select id="selectExhibitionALL" resultType="com.jghan.museumPJT.dto.ExhibitionDTO">
         SELECT
