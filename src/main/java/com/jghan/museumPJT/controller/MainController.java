@@ -31,12 +31,12 @@ public class MainController {
     
     @ResponseBody
     @GetMapping("/api/search")
-    public String search(@RequestParam("keyword") String keyword){
+    public List<ExhibitionDTO> search(@RequestParam("keyword") String keyword){
     	List<ExhibitionDTO> exList = exhibitionService.searchExhibition(keyword);
 
         System.out.println(exList);
 
-        return "keyword";
+        return exList;
     }
 
 

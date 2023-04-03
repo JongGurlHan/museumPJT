@@ -23,43 +23,21 @@
 		        	<input class="form-control me-2" id="search" type="search" placeholder="전시명, 전시관을 찾아보세요." aria-label="Search">
 					<button type="button" onclick="javascript:searchExhibition();" class="btn btn-primary me-1">조회</button>
 		        </div>
-	            
-                
-            </div>
+                <div class="row gy-4 justify-content-center" id="exItemList"><div>
+
+
+
+
+                </div>
         </div>
     </div>
 </section><!-- End Hero Section -->
 
 
 <script>
-function searchExhibition() {
-    /* event.preventDefault(); */
 
-    let keyword = document.getElementById("search").value;
 
-	console.log(keyword);
-    
-    $.ajax({
-        type:"GET",
-		url : `/api/search`,
-        data: { keyword: keyword},
-        //contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        dataType: "json"
-    }).done(res =>{ //Http상태코드 200번대 done이 뜬다.
 
-    console.log("Response s received: ", keyword);
-    }).fail(error => {
-    console.log("Response f received: ", keyword);
-
-<!--       if(error.data ==null){-->
-<!--           alert(error.responseJSON.message);-->
-<!--       }else{-->
-<!--           //json object를 Json 문자열로 변환-->
-<!--           alert(JSON.stringify(error.responseJSON.data));-->
-<!--           }-->
-    });
-
-}
 
 
 </script>
@@ -96,14 +74,6 @@ function searchExhibition() {
                     </div>
                 </div>
 
-            <script th:inline="javascript">
-
-
-
-            </script>
-
-
-					
 
 					<!-- End Gallery Item -->
 
@@ -273,6 +243,8 @@ function searchExhibition() {
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script src="/js/index.js"></script>
+
 
 </body>
 
