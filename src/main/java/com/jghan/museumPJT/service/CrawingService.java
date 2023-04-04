@@ -9,14 +9,17 @@ public interface CrawingService {
     //전체 전시 업데이트
     void updateExhibitionAll();
     
-    //리움미술관
+    //1. 리움미술관
     List<ExhibitionDTO> getExibitionListLeeum();
 
-    //MMCA서울
+    //2. MMCA서울
     List<ExhibitionDTO> getExibitionListNationalMuseum();
 
-    //서울역사박물관
+    //3. 서울역사박물관
     List<ExhibitionDTO> getExibitionListSeoulMuseumOfHistory();
+
+    //4.MMCA서울
+    List<ExhibitionDTO> getExhibitionListMMCASeoul();
 
 
 

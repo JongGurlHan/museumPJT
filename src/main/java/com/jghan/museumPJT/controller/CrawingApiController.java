@@ -54,4 +54,10 @@ public class CrawingApiController {
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
     }
 
+    @GetMapping("/api/display/MMCASeoul")
+    public ResponseEntity<?> displayMMCASeoul(){
+        List<ExhibitionDTO> exList = crawingService.getExhibitionListMMCASeoul();
+        return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
+    }
+
 }

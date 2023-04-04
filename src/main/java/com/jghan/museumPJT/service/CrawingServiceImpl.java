@@ -4,6 +4,7 @@ import com.jghan.museumPJT.dto.ExhibitionDTO;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +34,7 @@ public class CrawingServiceImpl implements CrawingService {
         getExibitionListSeoulMuseumOfHistory();
     }
 
-    //====리움미술관====
+    //====1. 리움미술관====
     @Override
     public List<ExhibitionDTO> getExibitionListLeeum() {
         String URL = "https://www.leeum.org/exhibition/exhibition01.asp";
@@ -80,7 +81,7 @@ public class CrawingServiceImpl implements CrawingService {
         return exList;
     }
 
-    //====국립미술관====
+    //====2. 국립중앙박물관====
     @Override
     public List<ExhibitionDTO> getExibitionListNationalMuseum() {
         String URL = "https://www.museum.go.kr/site/main/exhiSpecialTheme/list/current";
@@ -129,6 +130,7 @@ public class CrawingServiceImpl implements CrawingService {
         return exList;
     }
 
+    //3. 서울역사 박물관
     @Override
     public List<ExhibitionDTO> getExibitionListSeoulMuseumOfHistory() {
         String URL = "https://museum.seoul.go.kr/www/board/NR_boardList.do?bbsCd=1002&q_exhSttus=next&sso=ok";
@@ -152,11 +154,7 @@ public class CrawingServiceImpl implements CrawingService {
                 String eStart = StringUtils.substringBefore(ePeriod, " ~").trim();
                 String eEnd = StringUtils.substringAfter(ePeriod, " ~").trim();
 
-                System.out.println("eName: " +eName);
-                System.out.println("eImg: " +eImg);
-                System.out.println("eLink: " +eLink);
-                System.out.println("eStart: " +eStart);
-                System.out.println("eEnd: " +eEnd);
+
 
                 ex.setEMuseum("서울역사박물관");
                 ex.setEName(eName);
@@ -185,6 +183,82 @@ public class CrawingServiceImpl implements CrawingService {
         }
         return exList;
     }
+
+    //MMCA서울
+    @Override
+    public List<ExhibitionDTO> getExhibitionListMMCASeoul() {
+        String URL = "https://www.mmca.go.kr/visitingInfo/seoulInfo.do";
+        Document doc;
+        List<ExhibitionDTO> exList = new ArrayList<>();
+
+        try{
+            doc = Jsoup.connect(URL).get();
+
+            Elements eList = doc.getElementsByAttributeValue("class", "listArea").select("li");
+
+            System.out.println(eList);
+
+
+//            for (Element li : liTags) {
+//                System.out.println(li);
+//            }
+
+//            for (int i = 0; i<eList.size(); i++){
+//                ExhibitionDTO ex = new ExhibitionDTO();
+
+//                String eName = eList.get(i).select("a").select("strong").text();
+//                String eLink = "https://www.museum.go.kr"+eList.get(i).select("a").attr("href");
+//                String eStart = StringUtils.substringBefore(
+//                        eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
+//                String eEnd = StringUtils.substringAfter(
+//                        eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
+//                String eImg= "https://www.museum.go.kr"+eListImg.get(i).select("img").last().attr("src");
+
+//                ex.setEMuseum("국립중앙박물관");
+//                ex.setEName(eName);
+//                ex.setELink(eLink);
+//                ex.setELink(eLink);
+//                ex.setEStart(eStart);
+//                ex.setEEnd(eEnd);
+//                ex.setEImg(eImg);
+//                exList.add(ex);
+
+//                String storedEx = exhibitionService.findExhibitionByName(eName);
+//                if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
+//                    exhibitionService.saveExhibition(ex);
+//                }
+//            }
+//            String today = LocalDate.now().toString(); //오늘날짜 구한다
+//            List<ExhibitionDTO> finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+//            for (int i = 0; i<finishedEx.size(); i++){
+//                exhibitionService.updateEdisplayZero(finishedEx.get(i).getEIdx());
+//            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return exList;
+
+
+
+    }
+
+//     System.out.println("eName: " +eName);
+//                System.out.println("eImg: " +eImg);
+//                System.out.println("eLink: " +eLink);
+//                System.out.println("eStart: " +eStart);
+//                System.out.println("eEnd: " +eEnd);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
