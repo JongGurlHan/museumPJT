@@ -19,11 +19,11 @@
     <!--DB-전체전시조회-->
     <select id="selectExhibitionALL" resultType="com.jghan.museumPJT.dto.ExhibitionDTO">
         SELECT
-        e_idx, e_name, e_link, e_img, e_museum, e_start, e_img, e_end
+        	e_idx, e_name, e_link, e_img, e_museum, e_start, e_img, e_end, e_display
         FROM
-        e_exhibition
+       		e_exhibition
         WHERE
-        e_display = 1;
+      		e_display = 1;
     </select>
 
     <!--전시조회-->

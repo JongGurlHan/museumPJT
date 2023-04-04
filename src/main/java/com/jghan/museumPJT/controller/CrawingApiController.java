@@ -9,47 +9,48 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jghan.museumPJT.dto.CMRespDto;
 import com.jghan.museumPJT.dto.ExhibitionDTO;
+import com.jghan.museumPJT.service.CrawingService;
 import com.jghan.museumPJT.service.ExhibitionService;
-import com.jghan.museumPJT.service.MuseumService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-public class MusiumApiController {
+public class CrawingApiController {
 
-    private final MuseumService museumService;
+    private final CrawingService crawingService;
     private final ExhibitionService exhibitionService;
 
+    //DB- 전체 전시 조회
     @GetMapping("/api/exhibition/all")
     public ResponseEntity<?> getExhibitionAll(){
         List<ExhibitionDTO> exhibitionAll = exhibitionService.getExhibitionAll();
+        System.out.println(exhibitionAll);
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exhibitionAll), HttpStatus.OK);
     }
 
-
-
+    //전체 전시 크롤링 업데이트
     @GetMapping("/api/display/all")
     public ResponseEntity<?> updateExhibitionAll(){
-        museumService.updateExhibitionAll();
+    	crawingService.updateExhibitionAll();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", null), HttpStatus.OK);
     }
 
     @GetMapping("/api/display/leeum")
     public ResponseEntity<?> displayLeeum(){
-        List<ExhibitionDTO> exList = museumService.getExibitionListLeeum();
+        List<ExhibitionDTO> exList = crawingService.getExibitionListLeeum();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
     }
 
     @GetMapping("/api/display/nationalMuseum")
     public ResponseEntity<?> displayNationalMuseum(){
-        List<ExhibitionDTO> exList = museumService.getExibitionListNationalMuseum();
+        List<ExhibitionDTO> exList = crawingService.getExibitionListNationalMuseum();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
     }
 
     @GetMapping("/api/display/seoulMuseumOfHistory")
     public ResponseEntity<?> displaySeoulMuseumOfHistory(){
-        List<ExhibitionDTO> exList = museumService.getExibitionListSeoulMuseumOfHistory();
+        List<ExhibitionDTO> exList = crawingService.getExibitionListSeoulMuseumOfHistory();
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", exList), HttpStatus.OK);
     }
 

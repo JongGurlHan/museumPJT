@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class MuseumServiceImpl implements MuseumService {
+public class CrawingServiceImpl implements CrawingService {
 
     private final ExhibitionService exhibitionService;
 
@@ -80,6 +80,7 @@ public class MuseumServiceImpl implements MuseumService {
         return exList;
     }
 
+    //====국립미술관====
     @Override
     public List<ExhibitionDTO> getExibitionListNationalMuseum() {
         String URL = "https://www.museum.go.kr/site/main/exhiSpecialTheme/list/current";
@@ -135,7 +136,7 @@ public class MuseumServiceImpl implements MuseumService {
         List<ExhibitionDTO> exList = new ArrayList<>();
         try{
             if(URL.indexOf("https://") >= 0){
-                MuseumServiceImpl.setSSL();
+            	CrawingServiceImpl.setSSL();
             }
 
             doc = Jsoup.connect(URL).get();

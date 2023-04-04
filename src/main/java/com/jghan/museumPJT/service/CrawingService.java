@@ -4,7 +4,7 @@ import com.jghan.museumPJT.dto.ExhibitionDTO;
 
 import java.util.List;
 
-public interface MuseumService {
+public interface CrawingService {
 
     //전체 전시 업데이트
     void updateExhibitionAll();
