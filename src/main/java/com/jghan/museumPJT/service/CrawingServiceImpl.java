@@ -186,15 +186,18 @@ public class CrawingServiceImpl implements CrawingService {
 
     //MMCA서울
     @Override
-    public List<ExhibitionDTO> getExhibitionListMMCASeoul() {
-        String URL = "https://www.mmca.go.kr/visitingInfo/seoulInfo.do";
+    public List<ExhibitionDTO> getExhibitionListSoma() {
+        String URL = "https://soma.kspo.or.kr/main#p2";
         Document doc;
         List<ExhibitionDTO> exList = new ArrayList<>();
 
         try{
-            doc = Jsoup.connect(URL).get();
+            doc = Jsoup.connect(URL).get();            
 
-            Elements eList = doc.getElementsByAttributeValue("class", "listArea").select("li");
+            System.out.println("select 테스트");
+            Elements eList = doc.select("div#s2_slide");
+            
+
 
             System.out.println(eList);
 

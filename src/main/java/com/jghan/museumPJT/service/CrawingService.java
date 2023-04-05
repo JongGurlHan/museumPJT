@@ -18,8 +18,8 @@ public interface CrawingService {
     //3. 서울역사박물관
     List<ExhibitionDTO> getExibitionListSeoulMuseumOfHistory();
 
-    //4.MMCA서울
-    List<ExhibitionDTO> getExhibitionListMMCASeoul();
+    //4. 소마미술관
+    List<ExhibitionDTO> getExhibitionListSoma();
 
 
 
