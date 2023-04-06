@@ -19,7 +19,8 @@
     <!--DB-전체전시조회-->
     <select id="selectExhibitionALL" resultType="com.jghan.museumPJT.dto.ExhibitionDTO">
         SELECT
-        	e_idx, e_name, e_link, e_img, e_museum, e_start, e_img, e_end, e_display
+        	e_idx, e_name, e_link, e_img, e_museum, e_start, 
+        	e_img, e_end, e_display,  e_address, e_lat, e_long
         FROM
        		e_exhibition
         WHERE
@@ -45,14 +46,21 @@
             e_link,
             e_img,
             e_start,
-            e_end)
-            VALUES (
+            e_end,
+            e_address,            
+            e_lat,
+            e_long
+            )VALUES (
            #{eMuseum},
             #{eName},
             #{eLink},
             #{eImg},
             DATE_FORMAT(#{eStart}, "%Y-%m-%d"),
-            DATE_FORMAT(#{eEnd}, "%Y-%m-%d")
+            DATE_FORMAT(#{eEnd}, "%Y-%m-%d"),
+        	#{eAddress},
+        	#{eLat},
+        	#{eLong}       	
+        	
         )
     </insert>
 

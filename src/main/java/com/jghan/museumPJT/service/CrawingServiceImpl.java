@@ -32,6 +32,7 @@ public class CrawingServiceImpl implements CrawingService {
         getExibitionListLeeum();
         getExibitionListNationalMuseum();
         getExibitionListSeoulMuseumOfHistory();
+        getExhibitionListSoma();
     }
 
     //====1. 리움미술관====
@@ -52,6 +53,7 @@ public class CrawingServiceImpl implements CrawingService {
                 String eStart = StringUtils.substringBefore(eList.get(i).select("span.exDate").text(), " ~");
                 if(eStart == null) eStart = null;
                 String eEnd = StringUtils.substringAfter(eList.get(i).select("span.exDate").text(), "~ ");
+	            String eAddress = "서울특별시 용산구 이태원로55길 60-16";
 
                 ex.setEMuseum("리움미술관");
                 ex.setEName(eName);
@@ -60,6 +62,9 @@ public class CrawingServiceImpl implements CrawingService {
                 ex.setEStart(eStart);
                 ex.setEEnd(eEnd);
                 ex.setEDisplay(1);
+                ex.setEAddress(eAddress);
+                ex.setELat("37.53836720511353");
+                ex.setELong("126.99927585574612");
                 exList.add(ex);
 
                 String storedEx = exhibitionService.findExhibitionByName(eName); 
@@ -104,6 +109,7 @@ public class CrawingServiceImpl implements CrawingService {
                 String eEnd = StringUtils.substringAfter(
                                 eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
                 String eImg= "https://www.museum.go.kr"+eListImg.get(i).select("img").last().attr("src");
+	            String eAddress = "서울특별시 용산구 서빙고로 137";
 
                 ex.setEMuseum("국립중앙박물관");
                 ex.setEName(eName);
@@ -112,6 +118,9 @@ public class CrawingServiceImpl implements CrawingService {
                 ex.setEStart(eStart);
                 ex.setEEnd(eEnd);
                 ex.setEImg(eImg);
+                ex.setEAddress(eAddress);
+                ex.setELat("37.52383779828461");
+                ex.setELong("126.98018039613258");
                 exList.add(ex);
 
                 String storedEx = exhibitionService.findExhibitionByName(eName);
@@ -153,15 +162,17 @@ public class CrawingServiceImpl implements CrawingService {
                 String ePeriod = StringUtils.substringAfter(eList.get(i).select("p.period").text(), "기간");
                 String eStart = StringUtils.substringBefore(ePeriod, " ~").trim();
                 String eEnd = StringUtils.substringAfter(ePeriod, " ~").trim();
-
-
-
+	            String eAddress = "서울특별시 종로구 새문안로 55";
+	                
                 ex.setEMuseum("서울역사박물관");
                 ex.setEName(eName);
                 ex.setELink(eLink);
                 ex.setEImg(eImg);
                 ex.setEStart(eStart);
                 ex.setEEnd(eEnd);
+                ex.setEAddress(eAddress);
+                ex.setELat("37.570496718719575");
+                ex.setELong("126.97054636821485");
                 exList.add(ex);
 
                 String storedEx = exhibitionService.findExhibitionByName(eName);
@@ -184,7 +195,7 @@ public class CrawingServiceImpl implements CrawingService {
         return exList;
     }
 
-    //MMCA서울
+    //4. 소마미술관
     @Override
     public List<ExhibitionDTO> getExhibitionListSoma() {
         String URL = "https://soma.kspo.or.kr/main#p2";
@@ -194,62 +205,56 @@ public class CrawingServiceImpl implements CrawingService {
         try{
             doc = Jsoup.connect(URL).get();            
 
-            System.out.println("select 테스트");
-            Elements eList = doc.select("div#s2_slide");
+            Elements eList = doc.select("div#s2_slide").select("div.s2_slide_box.item");
             
+            
+            for (Element item : eList){
+                ExhibitionDTO ex = new ExhibitionDTO();
+                
+                String eName = item.getElementsByClass("txt_bottom").text();
+	            String eLink = "https://soma.kspo.or.kr"+item.select("a").first().attr("href");
+                String eImg  = "https://soma.kspo.or.kr"+item.getElementsByClass("s2_slide_box_inner").select("img").attr("src");
+                String ePeriod = item.getElementsByClass("txt_right").text();
+	            String eStart = StringUtils.substringBefore(ePeriod, " ~ ").trim().replace(".", "-");
+	            String eEnd = StringUtils.substringAfter(ePeriod, " ~ ").trim().replace(".", "-");
+	            String eAddress = "서울 송파구 위례성대로 51";
+	            
+	            ex.setEMuseum("소마미술관");
+                ex.setEName(eName);
+                ex.setELink(eLink);
+                ex.setEImg(eImg);
+                ex.setEStart(eStart);
+                ex.setEEnd(eEnd);
+                ex.setEDisplay(1);
+                ex.setEAddress(eAddress);
+                ex.setELat("37.5168788336674");
+                ex.setELong("127.11800163775546");
+                exList.add(ex);
 
-
-            System.out.println(eList);
-
-
-//            for (Element li : liTags) {
-//                System.out.println(li);
-//            }
-
-//            for (int i = 0; i<eList.size(); i++){
-//                ExhibitionDTO ex = new ExhibitionDTO();
-
-//                String eName = eList.get(i).select("a").select("strong").text();
-//                String eLink = "https://www.museum.go.kr"+eList.get(i).select("a").attr("href");
-//                String eStart = StringUtils.substringBefore(
-//                        eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
-//                String eEnd = StringUtils.substringAfter(
-//                        eList.get(i).getElementsByClass("info-list special").select("li").get(0).select("p").text(), "~");
-//                String eImg= "https://www.museum.go.kr"+eListImg.get(i).select("img").last().attr("src");
-
-//                ex.setEMuseum("국립중앙박물관");
-//                ex.setEName(eName);
-//                ex.setELink(eLink);
-//                ex.setELink(eLink);
-//                ex.setEStart(eStart);
-//                ex.setEEnd(eEnd);
-//                ex.setEImg(eImg);
-//                exList.add(ex);
-
-//                String storedEx = exhibitionService.findExhibitionByName(eName);
-//                if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
-//                    exhibitionService.saveExhibition(ex);
-//                }
-//            }
-//            String today = LocalDate.now().toString(); //오늘날짜 구한다
-//            List<ExhibitionDTO> finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
-//            for (int i = 0; i<finishedEx.size(); i++){
-//                exhibitionService.updateEdisplayZero(finishedEx.get(i).getEIdx());
-//            }
+	            System.out.println("eName: "+ eName);
+                System.out.println("eImg: "+ eImg);
+                System.out.println("ePeriod: "+ ePeriod);
+                System.out.println("eStart: "+ eStart);
+                System.out.println("eEnd: "+ eEnd);
+                System.out.println("eLink: "+ eLink);
+                
+                String storedEx = exhibitionService.findExhibitionByName(eName); 
+                if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
+                    exhibitionService.saveExhibition(ex);
+                }
+            }
+            String today = LocalDate.now().toString(); //오늘날짜 구한다
+            List<ExhibitionDTO> finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            for (int i = 0; i<finishedEx.size(); i++){
+                exhibitionService.updateEdisplayZero(finishedEx.get(i).getEIdx());
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return exList;
-
-
-
     }
 
-//     System.out.println("eName: " +eName);
-//                System.out.println("eImg: " +eImg);
-//                System.out.println("eLink: " +eLink);
-//                System.out.println("eStart: " +eStart);
-//                System.out.println("eEnd: " +eEnd);
+    //5. 
 
 
 
