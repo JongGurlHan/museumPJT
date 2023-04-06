@@ -33,6 +33,7 @@ public class CrawingServiceImpl implements CrawingService {
         getExibitionListNationalMuseum();
         getExibitionListSeoulMuseumOfHistory();
         getExhibitionListSoma();
+        getExhibitionListGroundseesaw();
     }
 
     //====1. 리움미술관====
@@ -231,13 +232,6 @@ public class CrawingServiceImpl implements CrawingService {
                 ex.setELong("127.11800163775546");
                 exList.add(ex);
 
-	            System.out.println("eName: "+ eName);
-                System.out.println("eImg: "+ eImg);
-                System.out.println("ePeriod: "+ ePeriod);
-                System.out.println("eStart: "+ eStart);
-                System.out.println("eEnd: "+ eEnd);
-                System.out.println("eLink: "+ eLink);
-                
                 String storedEx = exhibitionService.findExhibitionByName(eName); 
                 if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
                     exhibitionService.saveExhibition(ex);
@@ -254,7 +248,78 @@ public class CrawingServiceImpl implements CrawingService {
         return exList;
     }
 
-    //5. 
+    //5. 그라운드시소
+    @Override
+    public List<ExhibitionDTO> getExhibitionListGroundseesaw() {
+        String URL = "https://groundseesaw.co.kr/exhibitions/?_exhibition_filter_status=e01-now";
+        Document doc;
+        List<ExhibitionDTO> exList = new ArrayList<>();
+
+        try{
+            doc = Jsoup.connect(URL).get();
+            Elements eList = doc.select("div.fwpl-result");
+
+            for (Element item : eList){
+                System.out.println(item);
+
+                ExhibitionDTO ex = new ExhibitionDTO();
+
+                String eName = item.getElementsByClass("exhibition-title").text();
+                String eLink = item.select("a").first().attr("href");
+                String eImg  = item.select("img").attr("src");
+                String ePeriod = item.getElementsByClass("exhibition-period").text();
+                String eStart = ePeriod.substring(0,10).replaceAll("\\.", "-");
+                String eEnd ="";
+                if(ePeriod.length() == 23){
+                    eEnd = ePeriod.substring(12,23).trim().replaceAll("\\.", "-");;
+                }else{
+                    eEnd= null;
+                }
+
+                String eMuseum ="";
+                String eAddress = "";
+                String eLat ="";
+                String eLong ="";
+                String venue = item.getElementsByClass("exhibition-venue").text();
+                switch (venue) {
+                    case "명동":  eMuseum="그라운드시소 명동"; eAddress = "서울 중구 남대문로 73 에비뉴엘 9층"; eLat="37.56419559657774"; eLong="126.98162755250974";
+                        break;
+                    case "성수":  eMuseum="그라운드시소 성수"; eAddress = "서울 성동구 아차산로17길 49 생각공장 A동 지하1층 RB111호"; eLat="37.546735684781616"; eLong="127.06524816026692";
+                        break;
+                    case "서촌":  eMuseum="그라운드시소 서촌"; eAddress = "서울 종로구 자하문로6길 18-8"; eLat="37.577834985411066"; eLong="126.97290724491224";
+                        break;
+                    default:
+                                 eAddress = ""; eLat=""; eLong="";
+                        break;
+                }
+                ex.setEMuseum(eMuseum);
+                ex.setEName(eName);
+                ex.setELink(eLink);
+                ex.setEImg(eImg);
+                ex.setEStart(eStart);
+                ex.setEEnd(eEnd);
+                ex.setEDisplay(1);
+                ex.setEAddress(eAddress);
+                ex.setELat(eLat);
+                ex.setELong(eLong);
+                exList.add(ex);
+
+
+                String storedEx = exhibitionService.findExhibitionByName(eName);
+                if(!eName.equals(storedEx)) {                //1. 크롤링한 제목이 db에 없다면 해당 전시 저장
+                    exhibitionService.saveExhibition(ex);
+                }
+            }
+            String today = LocalDate.now().toString(); //오늘날짜 구한다
+            List<ExhibitionDTO> finishedEx = exhibitionService.selectFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            for (int i = 0; i<finishedEx.size(); i++){
+                exhibitionService.updateEdisplayZero(finishedEx.get(i).getEIdx());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return exList;
+    }
 
 
 

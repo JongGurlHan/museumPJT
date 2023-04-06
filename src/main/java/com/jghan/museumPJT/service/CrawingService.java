@@ -21,6 +21,9 @@ public interface CrawingService {
     //4. 소마미술관
     List<ExhibitionDTO> getExhibitionListSoma();
 
+    //5. 그라운드시소
+    List<ExhibitionDTO> getExhibitionListGroundseesaw();
+
 
 
 }
