@@ -41,10 +41,7 @@ public class MainController {
         PageHelper.startPage(searchDTO);
         return new ResponseEntity<>(new CMRespDto<>(1, "성공", PageInfo.of(exhibitionService.getExhibitionAll(searchDTO))), HttpStatus.OK);
     }
-    
-    
-   
-    
+      
     
     
     @ResponseBody

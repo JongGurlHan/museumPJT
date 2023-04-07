@@ -42,14 +42,10 @@
     <section id="gallery" class="gallery">
         <div class="row gy-4 justify-content-center">
 
-                <div th:each="ex: ${exList}" class="col-xl-3 col-lg-4 col-md-6">
+<!--                 <div th:each="ex: ${exList}" class="col-xl-3 col-lg-4 col-md-6">
                     <div class="gallery-item h-100">
                         <img th:src="${ex.eImg}" class="img-fluid" alt="">
                         <div class="gallery-links" style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
-
-<!--                            <a th:href="${ex.eImg}" title="Gallery 23" class="glightbox preview-link">-->
-<!--                                <i class="bi bi-arrows-angle-expand"><h5>자세히</h5></i>-->
-<!--                            </a>-->
                             <p th:text="${ex.eName}">전시명</p>
                             <p th:text="|${ex.eStart} - ${ex.eEnd}|">전시기간</p>
                             <p th:text="${ex.eMuseum}">전시관</p>
@@ -59,7 +55,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
         </div>
         
         
@@ -99,19 +95,19 @@
 <script type="text/javascript">
 	// 게시글 로드하기
 	let pageNum= 1;	
-	function storyLoad() {
+	function exLoad() {
 		console.log("pageNum:", pageNum)
 	    $.ajax({
-	        url:`/api/vegemilBaby/event/model?pageNum=${pageNum}&pageSize=30`,
+	        url:`/api/exhibition?pageNum=${pageNum}&pageSize=8`,
 	        dataType : "json",
 		     async: false
-	        
+		     
 	    }).done(res=>{
 	        console.log(res);
 	        res.data.list.forEach((model) => {
 				console.log(model);
-	            let babyModel = makeBabyModel(model)
-	            $("#babyList").append(babyModel);	          
+	            let exModel = makeExItem(model)
+	            $("#babyList").append(exModel);	          
 	           
 	        })									        
 	    }).fail(error => {
@@ -143,50 +139,9 @@
 		    return item;
 	}
 	
-	//생성된 타이틀 로드
-	function titleLoad(rownum){
-		console.log('타이틀 로드 함수실행')
-		let title;
-		$.ajax({
-			  url:'/api/vegemilBaby/event/model/title/'+rownum,
-			  method: "GET",
-		      dataType : "json",
-		      async: false,
-
-			  success: function(res) {
-				  let model = res.data;
-		          title = makeTitle(model);
-			  },
-			  error: function(error) {
-			      console.log(error);
-			  }
-			});										
-	return title;
 	
-	} 
 	
-	//타이틀 생성
-	function makeTitle(model){
-		let title = `
-			<li class="mcBox" id="${model.tRownum}">
-				<div class="best_day">
-					<span class="bestType01 bg_bean">${model.tMonth1}</span>
-					<span>${model.tMonth1String}</span>
-					`;
-					if(model.tMonth2){													
-						title += `
-						<span class="bestType01 bg_bean">${model.tMonth2}</span>
-						<span>${model.tMonth2String}</span>`;
-					}
-					title += `
-					<span class="bestYear">${model.tYear}</span>
-				</div>											
-			</li> 
-		`;
-		return title;										
-	}
-	
-	storyLoad();	
+	exLoad();	
 	
 	 $( document ).ready( function() {			
 			//이전 스크롤 좌표
