@@ -1,5 +1,7 @@
 package com.jghan.museumPJT.mapper;
 import com.jghan.museumPJT.dto.ExhibitionDTO;
+import com.jghan.museumPJT.dto.SearchDTO;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,6 +15,7 @@ public interface ExhibitionMapper {
 
     //전체 전시 조회
     List<ExhibitionDTO> selectExhibitionALL();
+    List<ExhibitionDTO> selectExhibitionALLApi(SearchDTO searchDTO);
 
     //전시조회
     String selectExhibitionByName(String eName);

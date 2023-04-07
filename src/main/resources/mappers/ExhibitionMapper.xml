@@ -23,9 +23,31 @@
         	e_img, e_end, e_display,  e_address, e_lat, e_long
         FROM
        		e_exhibition
-        WHERE
-      		e_display = 1;
+       <!--  WHERE
+      		e_display = 1; -->
     </select>
+    
+    <select id="selectExhibitionALLApi" parameterType ="com.jghan.museumPJT.dto.SearchDTO" resultType="com.jghan.museumPJT.dto.ExhibitionDTO">
+        SELECT
+        	e_idx, e_name, e_link, e_img, e_museum, e_start, 
+        	e_img, e_end, e_display,  e_address, e_lat, e_long
+        FROM
+       		e_exhibition
+       <!--  WHERE
+      		e_display = 1; -->
+    </select>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <!--전시조회-->
     <select id="selectExhibitionByName" parameterType="String" resultType="String">

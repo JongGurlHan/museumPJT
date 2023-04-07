@@ -1,6 +1,7 @@
 package com.jghan.museumPJT.service;
 
 import com.jghan.museumPJT.dto.ExhibitionDTO;
+import com.jghan.museumPJT.dto.SearchDTO;
 import com.jghan.museumPJT.mapper.ExhibitionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,11 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
     public List<ExhibitionDTO> getExhibitionAll() {
        return exhibitionMapper.selectExhibitionALL();
     }
+    
+    @Override
+	public List<ExhibitionDTO> getExhibitionAll(SearchDTO searchDTO) {
+    	return exhibitionMapper.selectExhibitionALLApi(searchDTO);
+	}
 
     //전시조회 - eName으로
     @Override
@@ -52,6 +58,8 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
     public void updateEdisplayZero(int eIdx) {
         exhibitionMapper.updateEdisplayZero(eIdx);
     }
+
+	
 
 	
 }
