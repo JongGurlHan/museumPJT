@@ -20,9 +20,32 @@
                 
                 <!-- 검색창 -->
 	            <div class="d-flex">
-		        	<input class="form-control me-2" id="search" type="search" placeholder="전시명, 전시관을 찾아보세요." aria-label="Search">
-					<button type="button" onclick="javascript:searchExhibition();" class="btn btn-primary me-1">조회</button>
+		        	<!-- <input class="form-control me-2" id="search" type="search" placeholder="전시명, 전시관을 찾아보세요." aria-label="Search">		        	
+					<button type="button" onclick="javascript:searchExhibition();" class="btn btn-primary me-1">조회</button>  -->
+					
+					
+					<div class="input-group mb-3">
+					  <input type="text" class="form-control" id="search" placeholder="전시명, 전시관을 찾아보세요." aria-label="Search" aria-describedby="button-addon2">
+					  <button type="button" onclick="javascript:searchExhibition();" class="btn btn-outline-success"  id="button-addon2">조회</button>
+					</div>
+					
+					<div class="dropdown">
+					  <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					    	정렬
+					  </button>
+					  <ul class="dropdown-menu dropdown-menu-dark">
+					    <li><a class="dropdown-item active" href="#">최신순</a></li>
+					    <li><a class="dropdown-item" href="#">마감순</a></li>
+					    <li><a class="dropdown-item" href="#">인기순</a></li>					    
+					  </ul>
+					</div>
+					
+					
+					
+		        			        
 		        </div>
+		        
+		        
                 <div class="row gy-4 justify-content-center" id="exItemList"></div>
     		</div>
     	</div>
@@ -38,7 +61,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
+    <section id="gallery" class="gallery">  
         <div id="exList" class="row gy-4 justify-content-center"></div>
     </section><!-- End Gallery Section -->
 
