@@ -52,7 +52,7 @@ public class CrawingServiceImpl implements CrawingService {
                 String eLink = "https://www.leeum.org/exhibition/"+eList.get(i).select("a").attr("href");
                 String eImg =eList.get(i).select("a").select("img").attr("src");
                 String eStart = StringUtils.substringBefore(eList.get(i).select("span.exDate").text(), " ~");
-                if(eStart == null) eStart = null;
+                if(eStart == null) eStart = "2022-01-01";
                 String eEnd = StringUtils.substringAfter(eList.get(i).select("span.exDate").text(), "~ ");
 	            String eAddress = "서울특별시 용산구 이태원로55길 60-16";
 

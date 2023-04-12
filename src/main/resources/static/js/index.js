@@ -14,8 +14,13 @@ function searchExhibition() {
     }).done(res =>{ //Http상태코드 200번대 done이 뜬다.
         res.forEach((ex) =>{
          console.log(ex);
+         
+         const exList = document.getElementById("exList"); // get the parent div element
+         const childDivs = exList.querySelectorAll("div"); // get all child div elements
+         childDivs.forEach((div) => div.remove()); // remove each child div element         
+         
          let exItem = getExItem(ex);
-         $("#exItemList").append(exItem);
+         $("#exList").append(exItem);
 
         })
     }).fail(error => {
@@ -46,29 +51,61 @@ function getExItem(ex) {
 
     // 게시글 로드하기
 	let pageNum= 1;
+	
 	function exLoad() {
 		console.log("pageNum:", pageNum)
-	    $.ajax({
-	        url:`/api/exhibition?pageNum=${pageNum}&pageSize=12`,
-	        dataType : "json",
-		     async: false
-	    }).done(res=>{
-	        console.log(res);
-	        res.data.list.forEach((model) => {
-				console.log(model);
-	            let exModel = makeExItem(model)
-	            $("#exList").append(exModel);
-	        })
-	    }).fail(error => {
-	        console.log("오류", error);
-	    });
+			$.ajax({
+		        url:`/api/exhibition?pageNum=${pageNum}&pageSize=12`,
+		        dataType : "json",
+			     async: false
+		    }).done(res=>{
+		        console.log(res);
+		        res.data.list.forEach((model) => {
+					console.log(model);
+		            let exModel = makeExItem(model)
+		            $("#exList").append(exModel);
+		        })
+		    }).fail(error => {
+		        console.log("오류", error);
+		    });
 	}
+	
+	function exArrange(option){
+		  let divs = document.querySelectorAll(".col-xl-3.col-lg-4.col-md-6");
+		  const sortedDivs = Array.from(divs).sort((a, b) => {
+			    console.log(option);
+			  	if(option == "old"){
+			    	let aId = parseInt(a.getAttribute('id').substring(8)); // get the id of div a and convert it to an integer
+			    	let bId = parseInt(b.getAttribute('id').substring(8)); // get the id of div b and convert it to an integer
+			    	$(".new").addClass("active");
+		            $(".old").removeClass("active");
+			    	return aId - bId; // sort the divs in ascending order based on their id numbers			    	
+			    }else if(option == "new"){
+			    	let aId = parseInt(a.getAttribute('id').substring(0, 8)); // get the id of div a and convert it to an integer
+			    	let bId = parseInt(b.getAttribute('id').substring(0, 8)); // get the id of div b and convert it to an integer
+			    	$(".new").removeClass("active");
+		            $(".old").addClass("active");
+
+			    	return bId- aId 
+			    }			    
+			  });
+			  
+			  // append the sorted divs to their parent element in the new order
+			  sortedDivs.forEach((div) => {
+			    const parent = div.parentNode;
+			    parent.removeChild(div);
+			    parent.appendChild(div);
+			  });
+	}
+	
+
 
 	//전시 아이템 생성
 	function makeExItem(model) {
+		let divId = (model.estart+model.eend).replace(/-/g, "");
 		let item =
 		    `
-		    <div class="col-xl-3 col-lg-4 col-md-6">
+		    <div class="col-xl-3 col-lg-4 col-md-6" id= ${divId}>
                         <div class="gallery-item h-100">
                             <img src="${model.eimg}" class="img-fluid" alt="">
                             <div class="gallery-links" style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
@@ -80,7 +117,7 @@ function getExItem(ex) {
                                 </a>
                             </div>
                         </div>
-                    </div>
+            </div>
 		     `;
 		    return item;
 	}
@@ -108,3 +145,10 @@ function getExItem(ex) {
 			}
 		};w.__beusablerumclient__.load(a);
 	})(window, document, '//rum.beusable.net/script/b161207e112311u833/2dbeafc7a5');
+   
+   
+   
+   function showSelectedValue(selectedOption) {
+	    const dropdownButton = selectedOption.closest('.dropdown').querySelector('.dropdown-toggle');
+	    dropdownButton.innerHTML = selectedOption.innerHTML;
+	  }
