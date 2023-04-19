@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.jghan.museumPJT.domain.user.User;
 import com.jghan.museumPJT.dto.ExhibitionDTO;
 
-public interface ExhibitionRepository extends JpaRepository<User, Integer>{
+public interface ExhibitionRepository extends JpaRepository<Exhibition, Integer>{
 
 	@Query(value = "SELECT\r\n" + 
 						"e_name\r\n" + 
@@ -27,12 +27,13 @@ public interface ExhibitionRepository extends JpaRepository<User, Integer>{
 	@Query(value = "UPDATE exhibition SET e_display = 0 WHERE e_idx = :eIdx", nativeQuery = true)
 	void updateEdisplayZero(@Param("eIdx") int eIdx);
 	
-	@Modifying
-    @Query(value = "INSERT INTO exhibition(content, imageId, userId, createDate) "
-    			  + "VALUES(:content, :imageId, :userId, now())", nativeQuery = true)
-	void saveExhibition(ExhibitionDTO ex);
-
 	
+	@Modifying
+	@Query(value = "INSERT INTO exhibition "
+					+ "(e_museum, e_name, e_link, e_img, e_start, e_end, e_address, e_lat, e_long) "
+				 + "VALUES (:#{#exhibition.eMuseum}, :#{#exhibition.eName}, :#{#exhibition.eLink}, :#{#exhibition.eImg}, DATE_FORMAT(:#{#exhibition.eStart}, '%Y-%m-%d'), DATE_FORMAT(:#{#exhibition.eEnd}, '%Y-%m-%d'), :#{#exhibition.eAddress}, :#{#exhibition.eLat}, :#{#exhibition.eLong})", nativeQuery = true)
+	void saveExhibition(@Param("exhibition") ExhibitionDTO exhibition);
+
 
 	
 
