@@ -25,8 +25,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class CrawingServiceImpl implements CrawingService {
-
-    private final ExhibitionService exhibitionService;
+    
     private final ExhibitionRepository exhibitionRepository;
 
     @Override

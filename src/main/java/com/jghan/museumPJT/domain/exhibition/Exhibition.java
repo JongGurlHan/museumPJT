@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.ColumnDefault;
 
@@ -37,10 +38,10 @@ public class Exhibition {
     @Column(nullable = false)
     private String e_img;
     
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String e_start;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String e_end;
     
     @Column(nullable = false, length = 50)
@@ -58,6 +59,9 @@ public class Exhibition {
 
     @Column(nullable = false, length = 50)
     private String e_long; //경도
+    
+    @Transient //DB에 컬럼이 만들어지지 않는다.
+    private boolean likeState;
     
     
 
