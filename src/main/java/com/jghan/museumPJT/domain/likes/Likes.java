@@ -1,4 +1,4 @@
-package com.jghan.museumPJT.domain.like;
+package com.jghan.museumPJT.domain.likes;
 
 import java.time.LocalDateTime;
 

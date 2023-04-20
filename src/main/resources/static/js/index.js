@@ -192,13 +192,13 @@ function getExItem(ex) {
 		if (likeIcon.hasClass("far")) { //빈하트-> LIKE하겠다
 		    $.ajax({
 	        			type: "post",
-	        			url: `/api/image/${imageId}/likes`,
+	        			url: `/api/ex/${exId}/likes`,
 	        			dataType: "json"
 	        		}).done(res=>{
 
-	        			let likeCountStr = $(`#storyLikeCount-${imageId}`).text(); //b태그 내용의 text부분을 가져온다
-	        			let likeCount = Number(likeCountStr) + 1;
-	        			$(`#storyLikeCount-${imageId}`).text(likeCount);
+//	        			let likeCountStr = $(`#storyLikeCount-${imageId}`).text(); //b태그 내용의 text부분을 가져온다
+//	        			let likeCount = Number(likeCountStr) + 1;
+//	        			$(`#storyLikeCount-${imageId}`).text(likeCount);
 
 	        			likeIcon.addClass("fas");
 	        			likeIcon.addClass("active");

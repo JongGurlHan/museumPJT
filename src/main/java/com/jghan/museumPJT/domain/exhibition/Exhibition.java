@@ -1,16 +1,20 @@
 package com.jghan.museumPJT.domain.exhibition;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jghan.museumPJT.domain.likes.Likes;
 import com.jghan.museumPJT.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -62,6 +66,10 @@ public class Exhibition {
     
     @Transient //DB에 컬럼이 만들어지지 않는다.
     private boolean likeState;
+    
+    @JsonIgnoreProperties({"exhibition"})
+    @OneToMany(mappedBy ="exhibition")
+    private List<Likes>likes;
     
     
 
