@@ -55,6 +55,9 @@ dependencies {
 
 	// Page Helper
 	implementation 'com.github.pagehelper:pagehelper-spring-boot-starter:1.4.2'
+	
+	//AOP
+	implementation 'org.springframework.boot:spring-boot-starter-aop:2.4.5'
 
 
 
