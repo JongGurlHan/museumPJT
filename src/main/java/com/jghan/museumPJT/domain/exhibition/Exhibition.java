@@ -1,6 +1,5 @@
 package com.jghan.museumPJT.domain.exhibition;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import org.hibernate.annotations.ColumnDefault;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jghan.museumPJT.domain.likes.Likes;
-import com.jghan.museumPJT.domain.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

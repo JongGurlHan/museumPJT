@@ -1,5 +1,6 @@
 package com.jghan.museumPJT.service;
 
+import com.jghan.museumPJT.domain.exhibition.Exhibition;
 import com.jghan.museumPJT.domain.exhibition.ExhibitionRepository;
 import com.jghan.museumPJT.dto.ExhibitionDTO;
 import lombok.RequiredArgsConstructor;
@@ -76,9 +77,9 @@ public class CrawingServiceImpl implements CrawingService {
             }
             // 2.db상에서 e_end값이 오늘보다 지났다면 eDisplay를 1 -> 0  수정
             String today = LocalDate.now().toString(); //오늘날짜 구한다            
-            List<ExhibitionDTO> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            List<Exhibition> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
             for (int i = 0; i<finishedEx.size(); i++){
-                exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getEIdx());
+                exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getE_idx());
             }
 
 
@@ -131,9 +132,9 @@ public class CrawingServiceImpl implements CrawingService {
                 }
             }
             String today = LocalDate.now().toString(); //오늘날짜 구한다
-            List<ExhibitionDTO> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            List<Exhibition> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
             for (int i = 0; i<finishedEx.size(); i++){
-            	exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getEIdx());
+                exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getE_idx());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -183,9 +184,9 @@ public class CrawingServiceImpl implements CrawingService {
                 }
             }
             String today = LocalDate.now().toString(); //오늘날짜 구한다
-            List<ExhibitionDTO> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            List<Exhibition> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
             for (int i = 0; i<finishedEx.size(); i++){
-            	exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getEIdx());
+                exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getE_idx());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -239,9 +240,9 @@ public class CrawingServiceImpl implements CrawingService {
                 }
             }
             String today = LocalDate.now().toString(); //오늘날짜 구한다
-            List<ExhibitionDTO> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            List<Exhibition> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
             for (int i = 0; i<finishedEx.size(); i++){
-            	exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getEIdx());
+                exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getE_idx());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -312,9 +313,9 @@ public class CrawingServiceImpl implements CrawingService {
                 }
             }
             String today = LocalDate.now().toString(); //오늘날짜 구한다
-            List<ExhibitionDTO> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
+            List<Exhibition> finishedEx = exhibitionRepository.findFinishedExhibition(today); //오늘날짜보다 과거 날짜의 전시 찾는다
             for (int i = 0; i<finishedEx.size(); i++){
-            	exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getEIdx());
+                exhibitionRepository.updateEdisplayZero(finishedEx.get(i).getE_idx());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

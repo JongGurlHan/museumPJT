@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.jghan.museumPJT.domain.user.User;
 import com.jghan.museumPJT.dto.ExhibitionDTO;
 
 public interface ExhibitionRepository extends JpaRepository<Exhibition, Integer>{
@@ -21,7 +20,7 @@ public interface ExhibitionRepository extends JpaRepository<Exhibition, Integer>
 	String findExhibitionByName(@Param("eName") String eName);
 
 	@Query(value = "SELECT * FROM exhibition WHERE e_end < :today ", nativeQuery = true)
-	List<ExhibitionDTO> findFinishedExhibition(@Param("today") String today);
+	List<Exhibition> findFinishedExhibition(@Param("today") String today);
 
 	@Modifying
 	@Query(value = "UPDATE exhibition SET e_display = 0 WHERE e_idx = :eIdx", nativeQuery = true)
