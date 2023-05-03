@@ -1,7 +1,8 @@
 package com.jghan.museumPJT.config.user;
 
 import com.jghan.museumPJT.domain.user.User;
-import com.jghan.museumPJT.domain.user.UserRepository;
+import com.jghan.museumPJT.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

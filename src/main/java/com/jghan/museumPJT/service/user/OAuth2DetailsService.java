@@ -2,7 +2,8 @@ package com.jghan.museumPJT.service.user;
 
 import com.jghan.museumPJT.config.user.PrincipalDetails;
 import com.jghan.museumPJT.domain.user.User;
-import com.jghan.museumPJT.domain.user.UserRepository;
+import com.jghan.museumPJT.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
