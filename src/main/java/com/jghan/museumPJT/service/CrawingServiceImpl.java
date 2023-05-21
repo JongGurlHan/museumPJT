@@ -262,21 +262,35 @@ public class CrawingServiceImpl implements CrawingService {
             Elements eList = doc.select("div.fwpl-result");
 
             for (Element item : eList){
-                System.out.println(item);
 
                 ExhibitionDTO ex = new ExhibitionDTO();
 
                 String eName = item.getElementsByClass("exhibition-title").text();
                 String eLink = item.select("a").first().attr("href");
                 String eImg  = item.select("img").attr("src");
-                String ePeriod = item.getElementsByClass("exhibition-period").text();
+                String ePeriod = item.getElementsByClass("exhibition-period").text().replaceAll("\\([^()]*\\)", "");
+                //23.06.30 ~ 23.12.3
+                String yearTest1 = ePeriod.substring(0,2);
+                String yearTest2 = ePeriod.substring(10,12);
+
+                if(ePeriod.startsWith("23")  ){ //년도가 2023이 아닌 23으로 시작한다면
+                    ePeriod = ePeriod.replaceAll("23", "2023");
+                }else if(ePeriod.startsWith("24")){
+                    ePeriod = ePeriod.replaceAll("24", "2024");
+                }else if(ePeriod.startsWith("25")){
+                    ePeriod = ePeriod.replaceAll("25", "2025");
+                }
+
                 String eStart = ePeriod.substring(0,10).replaceAll("\\.", "-");
                 String eEnd ="";
-                if(ePeriod.length() == 23){
+                if(ePeriod.length() == 23 ){
                     eEnd = ePeriod.substring(12,23).trim().replaceAll("\\.", "-");;
-                }else{
+                }else if (ePeriod.length() == 22){
+                    eEnd = ePeriod.substring(12,22).trim().replaceAll("\\.", "-");;
+                } else{
                     eEnd= null;
                 }
+
 
                 String eMuseum ="";
                 String eAddress = "";

@@ -102,10 +102,10 @@ function getExItem(ex) {
 
 	//전시 아이템 생성
 	function makeExItem(model) {
-		let divId = (model.estart+model.eend).replace(/-/g, "");
+		//let divId = (model.estart+model.eend).replace(/-/g, "");
 		let item =
 		    `
-		    <div class="col-xl-3 col-lg-4 col-md-6" id= ${divId}>
+		    <div class="col-xl-3 col-lg-4 col-md-6" >
                         <div class="gallery-item h-100">
                             <img src="${model.eimg}" class="img-fluid" alt="">
                             <div class="gallery-links" style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
@@ -119,10 +119,10 @@ function getExItem(ex) {
                                 <div style="width: 40px;font-size: 25px;border: 0;cursor: pointer;">
                                 	<button>`;
 									if(model.likeState){
-										item += `<i class="fas fa-heart active" id="storyLikeIcon-${model.idx}" onclick="toggleLike(${model.idx})"></i>`;
+										item += `<i class="fas fa-heart active" id="exLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx})"></i>`;
 
 									}else{
-								           item += `<i class="far fa-heart" id="storyLikeIcon-${model.idx}" onclick="toggleLike(${model.idx})"></i>`;
+								           item += `<i class="far fa-heart" id="exLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx})"></i>`;
 
 							         }
 								    item += `
