@@ -32,7 +32,7 @@ public class MainController {
     	List<ExhibitionDTO> exList = exhibitionService.getExhibitionAll();
         model.addAttribute("exList", exList);
 
-        return "index";
+        return "index3";
     }
     
     @ResponseBody
