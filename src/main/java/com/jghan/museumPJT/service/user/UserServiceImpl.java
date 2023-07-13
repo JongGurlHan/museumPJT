@@ -50,9 +50,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserProfileDto userProfile(int pageUserId, int principalId) {
         UserProfileDto dto = new UserProfileDto();
-        User userEntity = userRepository.findById(pageUserId).orElseThrow(() ->{
-           throw new CustomException("해당 프로필 페이지는 존재하지 않습니다.");
-        });
+        User userEntity = userRepository.findById(pageUserId).get();
+
+/*        User userEntity = userRepository.findById(pageUserId).orElseThrow(() ->{
+            throw new CustomException("해당 프로필 페이지는 존재하지 않습니다.");
+        });*/
+
 
         dto.setUser(userEntity);
 

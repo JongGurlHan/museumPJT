@@ -1,7 +1,6 @@
 package com.jghan.museumPJT.config;
 
 
-import com.jghan.museumPJT.service.user.OAuth2DetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig{
 
-    private final OAuth2DetailsService oAuth2DetailsService;
+    //private final OAuth2DetailsService oAuth2DetailsService;
 
     @Bean
     public BCryptPasswordEncoder encode(){
@@ -32,11 +31,11 @@ public class SecurityConfig{
                 .formLogin()
                 .loginPage("/user/login") //get
                 .loginProcessingUrl("/user/login") //post
-                .defaultSuccessUrl("/")
-                .and()
-                .oauth2Login()
-                .userInfoEndpoint()
-                .userService(oAuth2DetailsService);
+                .defaultSuccessUrl("/");
+//                .and()
+//                .oauth2Login()
+//                .userInfoEndpoint()
+//                .userService(oAuth2DetailsService);
         return http.build();
 
 

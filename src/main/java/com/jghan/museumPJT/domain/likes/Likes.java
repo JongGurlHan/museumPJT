@@ -2,15 +2,7 @@ package com.jghan.museumPJT.domain.likes;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 import com.jghan.museumPJT.domain.exhibition.Exhibition;
 import com.jghan.museumPJT.domain.user.User;
@@ -40,11 +32,11 @@ public class Likes {
 	private int id;
 	
     @JoinColumn(name="exhibitionId")
-    @ManyToOne //기본 패치전략은 EAGER
+    @ManyToOne(fetch = FetchType.LAZY)
     private Exhibition exhibition;
     
     @JoinColumn(name="userId")
-	@ManyToOne
+	@ManyToOne(fetch =FetchType.LAZY)
 	private User user;
     
     private LocalDateTime createDate;
