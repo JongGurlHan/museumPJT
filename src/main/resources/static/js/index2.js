@@ -48,10 +48,23 @@
 						  <p style="margin-bottom: 0px;" th:text="${model.emuseum}">국립중앙박물관</p>
 						  <p style="margin-bottom: 0px;" th:text="${model.estart} - ${model.eend}">2023-03-23 ~ 2023-09-23</p>
 						</div>
+						
+						 
+
 						<br>
+						
+						
 			
 						<a href="${model.elink}" class="btn btn-outline-success btn-sm">사이트 이동</a>
-						<a href="" class="btn btn-outline-danger btn-sm"><i class="far fa-heart"></i></a>
+						
+						<!--<button class="like">-->
+						<i class="far fa-heart" style="color: #ff0000;" id="storyLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx})"></i>
+						<!--</button>-->					
+				
+					
+
+                 		
+		
 		
 					</div>
 				</div>
@@ -59,6 +72,22 @@
 		     `;
 		    return item;
 	}
+
+
+	//좋아요, 안좋아요
+	function toggleLike(imageId) {
+		let likeIcon = $(`#storyLikeIcon-${imageId}`);
+
+		if (likeIcon.hasClass("far")) { //빈하트-> LIKE하겠다
+			likeIcon.addClass("fas");
+			likeIcon.addClass("active");
+			likeIcon.removeClass("far");
+
+		} else {  //빨간하트 ->UNLIKE 하겠다.
+			likeIcon.removeClass("fas");
+			likeIcon.removeClass("active");
+			likeIcon.addClass("far");
+		}}
 
 
 
