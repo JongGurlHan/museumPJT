@@ -15,7 +15,9 @@
 
 <body>
 
-
+<script th:inline="javascript">
+  var username = [[${userName}]];
+</script>
 
 
 <!--<nav class="bg-dark navbar-dark">-->
@@ -37,6 +39,7 @@
 <section id="gallery" class="gallery">
   <div id="exList" class="row gy-4 justify-content-center"></div>
 </section><!-- End Gallery Section -->
+<p th:text="${#authentication.name}"></p>
 
 
 <script src="/js/index2.js"></script>

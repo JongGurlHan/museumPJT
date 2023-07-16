@@ -2,6 +2,7 @@ package com.jghan.museumPJT.controller;
 
 import java.util.List;
 
+import com.jghan.museumPJT.domain.user.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,6 +32,19 @@ public class MainController {
     public String index(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
     	List<ExhibitionDTO> exList = exhibitionService.getExhibitionAll();
         model.addAttribute("exList", exList);
+
+        if(principalDetails != null){
+            model.addAttribute("loginUser", principalDetails.getUser());
+
+            String userName = principalDetails.getUser().getUsername();
+
+            model.addAttribute("userName", userName);
+            System.out.println("loginUser = " + principalDetails.getUser());
+
+            System.out.println("loginUser2 = " + principalDetails.getUser().getUsername());
+
+        }
+
 
         return "index3";
     }

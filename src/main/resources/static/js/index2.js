@@ -24,7 +24,7 @@
 
 	//전시 아이템 생성
 	function makeExItem(model) {
-		//let divId = (model.estart+model.eend).replace(/-/g, "");
+
 		let item =
 		    `
 		    <div class="col-xl-3 col-lg-4 col-md-6" >
@@ -56,9 +56,11 @@
 						
 			
 						<a href="${model.elink}" class="btn btn-outline-success btn-sm">사이트 이동</a>
+
+						<!--<button class="like">-->	
+							
+						<i class="far fa-heart" style="color: #ff0000;" id="storyLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx}, username)"></i>
 						
-						<!--<button class="like">-->
-						<i class="far fa-heart" style="color: #ff0000;" id="storyLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx})"></i>
 						<!--</button>-->					
 				
 					
@@ -75,7 +77,13 @@
 
 
 	//좋아요, 안좋아요
-	function toggleLike(imageId) {
+	function toggleLike(imageId, username) {
+
+		if(username == null){
+			alert("로그인 해주세요!");
+			return false;
+		}
+
 		let likeIcon = $(`#storyLikeIcon-${imageId}`);
 
 		if (likeIcon.hasClass("far")) { //빈하트-> LIKE하겠다
@@ -87,7 +95,8 @@
 			likeIcon.removeClass("fas");
 			likeIcon.removeClass("active");
 			likeIcon.addClass("far");
-		}}
+		}
+	}
 
 
 
