@@ -13,10 +13,18 @@ public class LikesServiceImpl implements LikesService{
 	
 	private final LikesRepository likesRepository;
 
-	@Transactional
+
 	@Override
-	public void elike(int exId, int principalId) {
-		likesRepository.eLikes(exId, principalId);		
+	@Transactional
+	public void likes(int exId, int principalId) {
+		likesRepository.likes(exId, principalId);
+	}
+
+	@Override
+	@Transactional
+	public void unlikes(int exId, int principalId) {
+		//likesRepository.unlikes(exId, principalId);
+
 	}
 
 }

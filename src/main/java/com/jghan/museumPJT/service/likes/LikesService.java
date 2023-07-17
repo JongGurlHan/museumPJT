@@ -1,7 +1,9 @@
 package com.jghan.museumPJT.service.likes;
 
 public interface LikesService {
-	
-	void elike(int exId, int principalId);
+
+	void likes(int exId, int principalId);
+
+	void unlikes(int exId, int principalId);
 
 }
