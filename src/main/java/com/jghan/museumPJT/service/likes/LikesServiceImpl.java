@@ -23,7 +23,7 @@ public class LikesServiceImpl implements LikesService{
 	@Override
 	@Transactional
 	public void unlikes(int exId, int principalId) {
-		//likesRepository.unlikes(exId, principalId);
+		likesRepository.unlikes(exId, principalId);
 
 	}
 

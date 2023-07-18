@@ -11,8 +11,10 @@ public interface ExhibitionService {
 	List<ExhibitionDTO> searchExhibition(String keyword);
 	
     //전체 전시 조회
-    List<ExhibitionDTO> getExhibitionAll();    
+    List<ExhibitionDTO> getExhibitionAll();
+
     List<ExhibitionDTO> getExhibitionAll(SearchDTO searchDTO);
+    List<ExhibitionDTO> getExhibitionAll(SearchDTO searchDTO, int principalId);
 
 
     //전시 조회(이름)

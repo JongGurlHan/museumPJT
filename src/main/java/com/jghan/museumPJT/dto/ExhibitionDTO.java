@@ -1,6 +1,9 @@
 package com.jghan.museumPJT.dto;
 
+import com.jghan.museumPJT.domain.likes.Likes;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class ExhibitionDTO {
@@ -15,5 +18,11 @@ public class ExhibitionDTO {
     private String eAddress;
     private String eLat; //위도
     private String eLong; //경도
+
+    private boolean likeState;
+
+    private List<Likes> likes;
+
+
 
 }

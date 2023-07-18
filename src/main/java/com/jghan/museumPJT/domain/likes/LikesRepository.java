@@ -13,7 +13,7 @@ public interface LikesRepository extends JpaRepository<Likes, Integer>{
 	void likes(@Param("exhibitionId") int exhibitionId, @Param("principalId") int principalId);
 
 
-//	@Modifying
-//	@Query(value = "DELETE FROM likes WHERE exhibitionId =:exhibitionId AND userId =:principalId", nativeQuery = true)
-//	void unlikes(@Param("exhibitionId") int exhibitionId, @Param("principalId") int principalId);
+	@Modifying
+	@Query(value = "DELETE FROM likes WHERE exhibitionId =:exhibitionId AND userId =:principalId", nativeQuery = true)
+	void unlikes(@Param("exhibitionId") int exhibitionId, @Param("principalId") int principalId);
 }

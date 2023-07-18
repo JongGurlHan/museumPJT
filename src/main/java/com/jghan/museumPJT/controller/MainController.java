@@ -44,12 +44,23 @@ public class MainController {
         }
         return "index";
     }
-    
+
     @ResponseBody
     @GetMapping("/api/exhibition")
-    public ResponseEntity<?> exhibition(SearchDTO searchDTO){
-        PageHelper.startPage(searchDTO);
-        return new ResponseEntity<>(new CMRespDto<>(1, "성공", PageInfo.of(exhibitionService.getExhibitionAll(searchDTO))), HttpStatus.OK);
+    public ResponseEntity<?> exhibition(SearchDTO searchDTO, @AuthenticationPrincipal PrincipalDetails principalDetails){
+
+        System.out.println("+++전시조회+++");
+        System.out.println("searchDTO.getPageNum() = " + searchDTO.getPageNum());
+        System.out.println("searchDTO.getPageSize() = " + searchDTO.getPageSize());
+
+        if(principalDetails == null){
+            return new ResponseEntity<>(new CMRespDto<>(1, "성공", PageInfo.of(exhibitionService.getExhibitionAll(searchDTO))), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(new CMRespDto<>(1, "성공", PageInfo.of(exhibitionService.getExhibitionAll(searchDTO, principalDetails.getUser().getId()))), HttpStatus.OK);
+        }
+
+
+
     }
       
     
