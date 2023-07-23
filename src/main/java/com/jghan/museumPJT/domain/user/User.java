@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -16,6 +18,7 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY) //번호증가 전략이 db를 따라감
     private int id;
 
@@ -31,6 +34,7 @@ public class User {
     private String role;
 
     private LocalDateTime createDate;
+
 
     @PrePersist //DB에 INSERT되기 직전에 실행
     public void createDate(){

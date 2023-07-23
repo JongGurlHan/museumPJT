@@ -28,6 +28,7 @@ import lombok.NoArgsConstructor;
 public class Likes {
 
 	@Id
+	@Column(name = "likes_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -35,7 +36,7 @@ public class Likes {
     @ManyToOne(fetch = FetchType.LAZY)
     private Exhibition exhibition;
     
-    @JoinColumn(name="userId")
+    @JoinColumn(name="user_id")
 	@ManyToOne(fetch =FetchType.LAZY)
 	private User user;
     
