@@ -18,19 +18,43 @@ public class ExhibitionServiceImpl implements  ExhibitionService{
     
     //전시검색
     @Override
-	public List<ExhibitionDTO> searchExhibition(String keyword) {
+    @Transactional(readOnly = true)
+    public List<ExhibitionDTO> searchExhibition(String keyword) {
     	return exhibitionMapper.selectExhibition(keyword);
 	}
 
     //전체 전시조회
     @Override
+    @Transactional(readOnly = true)
     public List<ExhibitionDTO> getExhibitionAll() {
        return exhibitionMapper.selectExhibitionALL();
     }
-    
+
     @Override
-	public List<ExhibitionDTO> getExhibitionAll(SearchDTO searchDTO) {
-    	return exhibitionMapper.selectExhibitionALLApi(searchDTO);
+    public List<ExhibitionDTO> getExhibitionAll(SearchDTO searchDTO) {
+        return exhibitionMapper.selectExhibitionALLApi(searchDTO);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+
+    public List<ExhibitionDTO> getExhibitionAll(SearchDTO searchDTO, int principalId) {
+        List<ExhibitionDTO> exhibitions = exhibitionMapper.selectExhibitionALLApi(searchDTO, principalId);
+
+        exhibitions.forEach((ex)->{
+
+            //ex.setLikeCount(ex.getLikes().size());
+
+            ex.getLikes().forEach((like) -> {
+                if(like.getUser().getId() == principalId){ //해당 이미지에 좋아요한 사람들을 찾아서 현재 로긴한 사람이 좋아요 한것인지 비교
+                    ex.setLikeState(true);
+                }
+
+            });
+        });
+
+
+        return exhibitions;
 	}
 
     //전시조회 - eName으로

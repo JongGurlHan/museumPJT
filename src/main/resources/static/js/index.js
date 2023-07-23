@@ -47,25 +47,23 @@
 						<div>
 						  <p style="margin-bottom: 0px;" th:text="${model.emuseum}">국립중앙박물관</p>
 						  <p style="margin-bottom: 0px;" th:text="${model.estart} - ${model.eend}">2023-03-23 ~ 2023-09-23</p>
-						</div>
-						
-						 
+						</div>						 
 
 						<br>
-						
 						
 			
 						<a href="${model.elink}" class="btn btn-outline-success btn-sm">사이트 이동</a>
 
-						<!--<button class="like">-->	
-							
-						<i class="far fa-heart" style="color: #ff0000;" id="storyLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx}, username)"></i>
+						<div>`;
+							if(model.likeState){
+								item += `<i class="fas fa-heart active" style="color: #ff0000;" id="storyLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx}, username)"></i>`;
+							}else{
+								item +=`<i class="far fa-heart" style="color: #ff0000;" id="storyLikeIcon-${model.eidx}" onclick="toggleLike(${model.eidx}, username)"></i>`;
+							}
+                        item += `
+						</div>	
 						
-						<!--</button>-->					
-				
-					
-
-                 		
+						               		
 		
 		
 					</div>

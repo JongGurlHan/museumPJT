@@ -15,7 +15,10 @@ public interface ExhibitionMapper {
 
     //전체 전시 조회
     List<ExhibitionDTO> selectExhibitionALL();
+
     List<ExhibitionDTO> selectExhibitionALLApi(SearchDTO searchDTO);
+
+    List<ExhibitionDTO> selectExhibitionALLApi(SearchDTO searchDTO, int principalId);
 
     //전시조회
     String selectExhibitionByName(String eName);
