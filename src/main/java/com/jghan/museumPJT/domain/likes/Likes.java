@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jghan.museumPJT.domain.exhibition.Exhibition;
 import com.jghan.museumPJT.domain.user.User;
 
@@ -34,9 +35,9 @@ public class Likes {
     @JoinColumn(name="exhibitionId")
     @ManyToOne(fetch = FetchType.LAZY)
     private Exhibition exhibition;
-    
+
     @JoinColumn(name="userId")
-	@ManyToOne(fetch =FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
     
     private LocalDateTime createDate;
