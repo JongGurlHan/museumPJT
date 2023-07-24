@@ -28,6 +28,7 @@ import lombok.NoArgsConstructor;
 public class Exhibition {
     
     @Id
+    @Column(name = "exhibition_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY) //번호증가 전략이 db를 따라감
     private int e_idx;
 
